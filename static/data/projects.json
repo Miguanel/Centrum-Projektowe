@@ -138,5 +138,35 @@
       "frontend": "HTML5, Tailwind CSS, Vanilla JS (ES6+), Leaflet.js.",
       "other": "Docker, REST API, Obsługa przesyłania plików."
     }
+  },
+  {
+    "id": "07",
+    "title": "Mobile Time Manager (Chronos)",
+    "tags": ["Mobile", "Android", "Java/Kotlin", "Produktywność"],
+    "description": "Zaawansowany system mobilny do zarządzania czasem i priorytetyzacji zadań. Wykorzystuje natywne moduły Androida do monitorowania efektywności osobistej.",
+    "tech": ["MVVM", "Room Persistence", "WorkManager", "Material Design"],
+    "linkText": "ZOBACZ REPOZYTORIUM",
+    "linkUrl": "#",
+    "details": {
+      "fullDescription": "Projekt inżynierski obejmujący implementację mobilnego ekosystemu wspierającego zarządzanie czasem. Aplikacja dostarcza intuicyjne narzędzia do ewidencjonowania i monitorowania zadań w ujęciu krótko- i długoterminowym. System maksymalizuje efektywność poprzez głęboką integrację z natywnymi komponentami systemu Android, takimi jak mechanizmy powiadomień, system plików oraz aparat fotograficzny do gromadzenia dokumentacji multimedialnej.",
+      "features": [
+        "Architektura MVVM: Pełna separacja logiki biznesowej od warstwy prezentacji dla zapewnienia skalowalności i testowalności kodu. ",
+        "Natywne Przetwarzanie (WorkManager): Asynchroniczne sprawdzanie terminów i generowanie powiadomień w tle przy optymalnym zużyciu energii.",
+        "Interfejs Material Design: Wysoka ergonomia dzięki kodowaniu kolorystycznemu priorytetów, responsywnym listom (RecyclerView) i kontrolkom kalendarza.",
+        "Bezpieczny Eksport (Storage Access Framework): Możliwość bezpiecznego importu oraz eksportu bazy zadań do zewnętrznych plików JSON/TXT.",
+        "Obsługa Uprawnień: Implementacja Runtime Permissions dla bezpiecznego dostępu do modułów aparatu i multimediów."
+      ],
+      "backend": "Przetwarzanie lokalne (Android Framework), WorkManager API.",
+      "database": "Room Persistence Library (SQLite): Relacyjna struktura danych z obsługą powiązań 1:N dla zadań i załączników. ",
+      "frontend": "Android XML Layouts (Material UI), Activity/Fragment API, dynamiczne kontenery ScrollView.",
+      "other": "Walidacja formularzy, Obsługa błędów wejścia/wyjścia, System natywnych notyfikacji.",
+      "screenshots": [
+      "/static/images/todolist-1.png",
+      "/static/images/todolist-2.png",
+      "/static/images/todolist-3.png",
+      "/static/images/todolist-4.png",
+      "/static/images/todolist-5.png"
+    ]
+    }
   }
 ]

@@ -193,13 +193,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="detail-row"><span class="detail-label">Baza danych:</span> <span class="detail-value">${details.database || '---'}</span></div>
                 <div class="detail-row" style="border-bottom: none;"><span class="detail-label">Inne:</span> <span class="detail-value">${details.other || '---'}</span></div>
             </div>
-
+            ${details.screenshots ? `
+                <div class="project-gallery" style="display: flex; gap: 10px; overflow-x: auto; padding: 15px 0;">
+                    ${details.screenshots.map(src => `<img src="${src}" style="height: 200px; border: 1px solid var(--neon-cyan); border-radius: 4px;">`).join('')}
+                </div>
+            ` : ''}
             <div class="modal-actions">
                 ${p.linkUrl && p.linkUrl !== "#" ? `
                 <a href="${p.linkUrl}" target="_blank" class="action-btn btn-cyan" style="display: inline-block; min-width: 200px;">
                     >> URUCHOM PROJEKT (LIVE)
                 </a>` : `<p style="color: #666;">[ Link Live niedostępny dla tego modułu R&D ]</p>`}
             </div>
+
         `;
     }
 
