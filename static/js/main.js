@@ -1,10 +1,11 @@
+let cvData = [];
+let projectsData = [];
+let labsData = [];
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- FAZA 1: ŁADOWANIE DANYCH ---
     loadContent();
-
-    let cvData = [];
-    let projectsData = []; // Przechowujemy dane projektów globalnie
 
     async function loadContent() {
         try {
@@ -15,15 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
             ]);
 
             projectsData = projectsRes.ok ? await projectsRes.json() : [];
-            const labs = labsRes.ok ? await labsRes.json() : [];
+            labsData = labsRes.ok ? await labsRes.json() : [];
             cvData = cvRes.ok ? await cvRes.json() : [];
 
             renderProjects(projectsData);
-            renderLabs(labs);
+            renderLabs(labsData);
 
             initVisualEffects();
-            initModalSystem(); // Modal CV
-            initProjectModalSystem(); // NOWOŚĆ: Modal Projektów
+            initModalSystem();
+            initProjectModalSystem(); // Inicjalizacja po załadowaniu danych
 
         } catch (error) {
             console.error("Critical System Error:", error);
@@ -38,11 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <article class="project-card">
                 <div class="project-header">
                     <h2>[${p.id}] ${p.title}</h2>
-                    <span class="badge">${p.tags.join(' / ')}</span>
+                    <span class="badge">${(p.tags || []).join(' / ')}</span>
                 </div>
                 <div class="project-content">
                     <p>${p.description}</p>
-                    <ul class="tech-stack">${p.tech.map(t => `<li>${t}</li>`).join('')}</ul>
+                    <ul class="tech-stack">${(p.tech || []).map(t => `<li>${t}</li>`).join('')}</ul>
 
                     <div class="project-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
                         <button class="action-btn btn-cyan open-project-btn" data-id="${p.id}" style="flex: 1;">
@@ -66,22 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="status-indicator"><span class="blinking-dot"></span> Status: ${l.status || 'W przygotowaniu'}</div>
                 <h2>[${l.id}] ${l.title}</h2>
                 <p>${l.description}</p>
-                ${l.tech ? `<div class="future-tech">Tech: ${l.tech.join(', ')}</div>` : ''}
+                ${l.tech ? `<div class="future-tech" style="margin-bottom: 20px;">Tech: ${l.tech.join(', ')}</div>` : ''}
+
+                <button class="action-btn btn-cyan open-lab-btn" data-id="${l.id}" style="width: 100%;">
+                    >> SPECYFIKACJA R&D
+                </button>
             </section>
         `).join('');
     }
 
-    // --- SYSTEM MODALA CV (BEZ ZMIAN) ---
     function initModalSystem() {
         const openBtn = document.getElementById('open-cv-modal');
-        const modalContainer = document.getElementById('modal-container'); // Wspólny kontener dla obu modali? Lepiej użyć osobnego lub czyścić.
+        const modalContainer = document.getElementById('modal-container');
 
-        if (!openBtn) return;
+        if (!openBtn || !modalContainer) return;
 
-        // Stwórzmy osobny kontener na CV jeśli nie istnieje, lub użyjmy dynamicznego
-        let cvModal = document.getElementById('cv-modal-backdrop');
-        if(!cvModal && modalContainer) {
-             // Generujemy HTML raz
+        if(!document.getElementById('cv-backdrop')) {
              const modalHTML = `
                 <div class="modal-backdrop" id="cv-backdrop">
                     <div class="modal-window project-card">
@@ -100,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             `;
-            modalContainer.innerHTML += modalHTML; // Dodajemy do kontenera
+            modalContainer.innerHTML += modalHTML;
         }
 
         const backdrop = document.getElementById('cv-backdrop');
@@ -118,87 +119,90 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- NOWOŚĆ: SYSTEM MODALA PROJEKTÓW ---
     function initProjectModalSystem() {
-        // Nasłuchujemy kliknięć na kontenerze projektów (delegacja zdarzeń)
-        const container = document.getElementById('projects-container');
+        const projectsContainer = document.getElementById('projects-container');
+        const labsContainer = document.getElementById('labs-container');
         const modalContainer = document.getElementById('modal-container');
 
-        if (!container || !modalContainer) return;
+        if (!modalContainer) return;
 
-        // Tworzymy strukturę modala projektowego (domyślnie ukryty)
-        const projectModalHTML = `
-            <div class="modal-backdrop" id="project-backdrop">
-                <div class="modal-window project-card" style="max-width: 800px; width: 95%;">
-                    <button class="close-modal" id="close-project">×</button>
-                    <div id="project-modal-content">
-                        </div>
-                </div>
-            </div>
-        `;
-
-        // Dodajemy HTML do strony (jeśli jeszcze go nie ma)
         if (!document.getElementById('project-backdrop')) {
-             modalContainer.insertAdjacentHTML('beforeend', projectModalHTML);
+            modalContainer.insertAdjacentHTML('beforeend', `
+                <div class="modal-backdrop" id="project-backdrop">
+                    <div class="modal-window project-card" style="max-width: 800px; width: 95%;">
+                        <button class="close-modal" id="close-project">×</button>
+                        <div id="project-modal-content"></div>
+                    </div>
+                </div>
+            `);
         }
 
         const backdrop = document.getElementById('project-backdrop');
         const contentDiv = document.getElementById('project-modal-content');
         const closeBtn = document.getElementById('close-project');
 
-        // Obsługa kliknięcia "ZOBACZ SZCZEGÓŁY"
-        container.addEventListener('click', (e) => {
-            if (e.target.closest('.open-project-btn')) {
-                const btn = e.target.closest('.open-project-btn');
-                const projectId = btn.dataset.id;
-                const project = projectsData.find(p => p.id === projectId);
-
+        const handleModalTrigger = (e) => {
+            // Logika dla projektów
+            const projectBtn = e.target.closest('.open-project-btn');
+            if (projectBtn) {
+                const project = projectsData.find(p => p.id === projectBtn.dataset.id);
                 if (project && project.details) {
                     fillProjectModal(project, contentDiv);
                     backdrop.classList.add('active');
                     window.refreshCircuitListeners();
                 }
             }
-        });
 
-        // Zamykanie
-        closeBtn.addEventListener('click', () => backdrop.classList.remove('active'));
-        backdrop.addEventListener('click', (e) => {
-            if (e.target === backdrop) backdrop.classList.remove('active');
-        });
+            // Logika dla laboratorium
+            const labBtn = e.target.closest('.open-lab-btn');
+            if (labBtn) {
+                const lab = labsData.find(l => l.id === labBtn.dataset.id);
+                if (lab && lab.details) {
+                    fillProjectModal(lab, contentDiv);
+                    backdrop.classList.add('active');
+                    window.refreshCircuitListeners();
+                }
+            }
+        };
+
+        if (projectsContainer) projectsContainer.addEventListener('click', handleModalTrigger);
+        if (labsContainer) labsContainer.addEventListener('click', handleModalTrigger);
+
+        closeBtn.onclick = () => backdrop.classList.remove('active');
+        backdrop.onclick = (e) => { if (e.target === backdrop) backdrop.classList.remove('active'); };
     }
 
     function fillProjectModal(p, container) {
-        const details = p.details;
+        const details = p.details || {};
 
         container.innerHTML = `
             <h2 style="color: var(--neon-cyan); margin-bottom: 5px;">[${p.id}] ${p.title}</h2>
-            <div class="badge" style="margin-bottom: 20px; display: inline-block;">${p.tags.join(' / ')}</div>
+            <div class="badge" style="margin-bottom: 20px; display: inline-block;">${(p.tags || []).join(' / ')}</div>
 
             <div class="modal-details-content">
-                <p style="font-size: 1.1em; color: #fff; margin-bottom: 20px;">${details.fullDescription}</p>
+                <p style="font-size: 1.1em; color: #fff; margin-bottom: 20px;">${details.fullDescription || "Brak opisu."}</p>
 
                 <h3>> KLUCZOWE FUNKCJONALNOŚCI:</h3>
                 <ul>
-                    ${details.features.map(f => `<li>${f}</li>`).join('')}
+                    ${(details.features || ["W opracowaniu..."]).map(f => `<li>${f}</li>`).join('')}
                 </ul>
 
                 <h3>> STACK TECHNOLOGICZNY:</h3>
-                <div class="detail-row"><span class="detail-label">Backend:</span> <span class="detail-value">${details.backend}</span></div>
-                <div class="detail-row"><span class="detail-label">Frontend:</span> <span class="detail-value">${details.frontend}</span></div>
-                <div class="detail-row"><span class="detail-label">Baza danych:</span> <span class="detail-value">${details.database}</span></div>
-                <div class="detail-row" style="border-bottom: none;"><span class="detail-label">Inne:</span> <span class="detail-value">${details.other}</span></div>
+                <div class="detail-row"><span class="detail-label">Backend:</span> <span class="detail-value">${details.backend || '---'}</span></div>
+                <div class="detail-row"><span class="detail-label">Frontend:</span> <span class="detail-value">${details.frontend || '---'}</span></div>
+                <div class="detail-row"><span class="detail-label">Baza danych:</span> <span class="detail-value">${details.database || '---'}</span></div>
+                <div class="detail-row" style="border-bottom: none;"><span class="detail-label">Inne:</span> <span class="detail-value">${details.other || '---'}</span></div>
             </div>
 
             <div class="modal-actions">
+                ${p.linkUrl && p.linkUrl !== "#" ? `
                 <a href="${p.linkUrl}" target="_blank" class="action-btn btn-cyan" style="display: inline-block; min-width: 200px;">
                     >> URUCHOM PROJEKT (LIVE)
-                </a>
+                </a>` : `<p style="color: #666;">[ Link Live niedostępny dla tego modułu R&D ]</p>`}
             </div>
         `;
     }
 
-    // --- FAZA 2: SILNIK GRAFICZNY PCB (BEZ ZMIAN) ---
     function initVisualEffects() {
         const textBlocks = document.querySelectorAll('.section-header h1, .section-header p');
         textBlocks.forEach(block => {
@@ -439,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         window.refreshCircuitListeners = () => {
-            const interactiveElements = document.querySelectorAll('.project-card, .lab-item, .action-btn, nav a, .cv-btn');
+            const interactiveElements = document.querySelectorAll('.project-card, .lab-item, .action-btn, nav a, .cv-btn, .open-lab-btn, .open-project-btn');
             interactiveElements.forEach(el => {
                 if (el.dataset.listenerAttached) return;
                 el.dataset.listenerAttached = "true";
@@ -457,48 +461,3 @@ document.addEventListener('DOMContentLoaded', () => {
         window.refreshCircuitListeners();
     }
 });
-
-function initProjectModalSystem() {
-    const container = document.getElementById('projects-container');
-    const modalContainer = document.getElementById('modal-container');
-
-    if (!container || !modalContainer) return;
-
-    // 1. Stwórz strukturę modala, jeśli jej nie ma
-    if (!document.getElementById('project-backdrop')) {
-        modalContainer.insertAdjacentHTML('beforeend', `
-            <div class="modal-backdrop" id="project-backdrop">
-                <div class="modal-window project-card" style="max-width: 800px; width: 95%;">
-                    <button class="close-modal" id="close-project">×</button>
-                    <div id="project-modal-content"></div>
-                </div>
-            </div>
-        `);
-    }
-
-    const backdrop = document.getElementById('project-backdrop');
-    const contentDiv = document.getElementById('project-modal-content');
-    const closeBtn = document.getElementById('close-project');
-
-    // 2. Słuchaj kliknięć w PRZYCISK wewnątrz kontenera projektów
-    container.addEventListener('click', (e) => {
-        const btn = e.target.closest('.open-project-btn');
-        if (btn) {
-            const projectId = btn.dataset.id;
-            // Szukamy danych projektu w zmiennej projectsData (którą zapisałeś przy fetch)
-            const project = projectsData.find(p => p.id === projectId);
-
-            if (project && project.details) {
-                fillProjectModal(project, contentDiv);
-                backdrop.classList.add('active');
-                window.refreshCircuitListeners(); // Odśwież animację PCB dla nowych przycisków
-            } else {
-                console.warn("Brak szczegółów (details) dla projektu:", projectId);
-            }
-        }
-    });
-
-    // Zamykanie
-    closeBtn.onclick = () => backdrop.classList.remove('active');
-    backdrop.onclick = (e) => { if (e.target === backdrop) backdrop.classList.remove('active'); };
-}

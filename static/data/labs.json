@@ -2,23 +2,62 @@
 
   {
     "id": "01",
-    "title": "WSM Chemical Bonds: Rezonans Falowy",
+    "title": "WSM Chemical Bonds: Wave Resonance Simulator",
     "status": "Konceptualizacja / R&D",
-    "description": "Symulator wiązań chemicznych oparty na teorii Falowej Struktury Materii (WSM). Zamiast statycznych modeli kulkowych, projekt wizualizuje interferencję sferycznych fal stojących atomów, tworząc dynamiczne pola rezonansowe.",
-    "tech": ["Vanilla JS", "HTML5 Canvas", "Fizyka Kwantowa"]
+    "description": "Zaawansowany symulator mechaniki molekularnej oparty na teorii Falowej Struktury Materii (WSM). Projekt porzuca statyczne modele cząsteczek na rzecz dynamicznej interferencji sferycznych fal stojących.",
+    "tech": ["Vanilla JS", "HTML5 Canvas", "Wave Mechanics"],
+    "details": {
+      "fullDescription": "Projekt stanowi próbę wizualizacji materii nie jako zbioru punktowych cząstek, lecz jako wynik nakładania się sferycznych fal przychodzących i wychodzących (In/Out-waves). System skupia się na modelowaniu wiązań chemicznych jako stref stabilnego rezonansu falowego. Zamiast tradycyjnych sił elektrostatycznych, stabilność cząsteczek jest tu determinowana przez minimalizację amplitudy w węzłach fal stojących, co rzuca nowe światło na intuicyjne rozumienie fizyki kwantowej.",
+      "features": [
+        "Dynamic Interference Mapping: Renderowanie wzorów interferencyjnych w czasie rzeczywistym przy użyciu autorskiego silnika matematycznego.",
+        "Phase Coherence Analysis: Symulacja wpływu synchronizacji fazowej atomów na siłę i stabilność wiązania.",
+        "Nodal Visualization: Precyzyjne wyznaczanie punktów węzłowych i strzałek fal stojących w przestrzeni 2D/3D.",
+        "Energy State Transition: Wizualizacja 'skoków kwantowych' jako nagłych zmian w konfiguracji rezonansowej systemu."
+      ],
+      "backend": "Silnik obliczeniowy oparty na liczbach zespolonych zaimplementowany w czystym JavaScript (ES6+).",
+      "frontend": "HTML5 Canvas z wykorzystaniem zaawansowanych filtrów kompozytowych (Lighter/Multiply) do symulacji nakładania się fal.",
+      "database": "Przechowywanie konfiguracji atomowych i parametrów falowych w strukturach typu TypedArrays (Float32Array) dla maksymalnej wydajności.",
+      "other": "Wykorzystanie równań falowych Milo Wolffa do definicji gęstości przestrzeni rezonansowej."
+    }
   },
   {
     "id": "02",
-    "title": "Quantum Modulator: Architekt Systemu",
+    "title": "Quantum Modulator: Modular Architecture Suite",
     "status": "Badania i Rozwój",
-    "description": "Modułowe środowisko do projektowania komputerów kwantowych. Użytkownik buduje systemy z gotowych segmentów (pułapki jonowe, bramki logiczne), obserwując ewolucję stanu Qubita na sferze Blocha w czasie rzeczywistym.",
-    "tech": ["React Flow", "FastAPI", "Macierze Prawdopodobieństwa"]
+    "description": "Interaktywne środowisko projektowe dla inżynierii kwantowej. Pozwala na budowę złożonych obwodów z modułowych komponentów sprzętowych przy jednoczesnej analizie stanu prawdopodobieństwa.",
+    "tech": ["React Flow", "FastAPI", "Linear Algebra"],
+    "details": {
+      "fullDescription": "Quantum Modulator to platforma typu 'CAD dla komputerów kwantowych'. Umożliwia inżynierom i studentom budowanie procesorów kwantowych z fizycznych modułów, takich jak pułapki jonowe, nadprzewodzące pętle (SQUIDs) czy optyczne bramki logiczne. System nie tylko symuluje logikę bramek (Hadamard, CNOT), ale przede wszystkim wizualizuje fizyczne podstawy ich działania, uwzględniając zjawiska dekoherencji i szumu termicznego.",
+      "features": [
+        "Modular Component Logic: Budowanie systemów poprzez łączenie bloków sprzętowych z dynamiczną rekalibracją obwodu.",
+        "Real-time Bloch Sphere Projection: Wizualizacja stanu Qubita na sferze Blocha podczas przechodzenia przez poszczególne segmenty układu.",
+        "Probability Cloud Mapping: Renderowanie chmur prawdopodobieństwa wyników pomiaru (State Vector) przy użyciu bibliotek algebry liniowej.",
+        "Decoherence Simulation: Modelowanie wpływu środowiska zewnętrznego na stabilność splątania kwantowego (Quantum Entanglement)."
+      ],
+      "backend": "Python + FastAPI obsługujący zaawansowane operacje na macierzach (NumPy, SciPy) i obliczenia tensorowe.",
+      "frontend": "React.js + React Flow do zarządzania topologią obwodu; Three.js do trójwymiarowej wizualizacji sfery Blocha.",
+      "database": "NoSQL (MongoDB) do przechowywania biblioteki szablonów bramek i złożonych schematów architektonicznych.",
+      "other": "Integracja z OpenQASM (Open Quantum Assembly Language) dla kompatybilności z realnymi procesorami kwantowymi."
+    }
   },
   {
     "id": "03",
-    "title": "LoopMaster Pro: Web Audio Engine",
-    "status": "Prototypowanie UX",
-    "description": "Zaawansowany looper DJ wykorzystujący Web Audio API. System pozwala na nakładanie pętli audio z mikrofonu w czasie rzeczywistym (overdubbing) przy wykorzystaniu technologii AudioWorklets dla minimalizacji latencji.",
-    "tech": ["Web Audio API", "AudioWorklets", "JavaScript"]
+    "title": "LoopMaster Pro: Mobile Audio Engine",
+    "status": "R&D / Native Development",
+    "description": "Natywna aplikacja na Androida służąca jako zaawansowany looper DJ. System wykorzystuje niskopoziomowe API dźwięku do nagrywania i natychmiastowego nakładania pętli audio (overdubbing) w czasie rzeczywistym przy minimalnej latencji.",
+    "tech": ["Kotlin", "C++ (Oboe)", "Android NDK"],
+    "details": {
+      "fullDescription": "Projekt ma na celu stworzenie profesjonalnego narzędzia dla DJ-ów i beatboxerów na platformę Android. Głównym wyzwaniem jest pokonanie systemowej latencji dźwięku. Aplikacja wykorzystuje silnik napisany w C++ (Oboe), który komunikuje się bezpośrednio z warstwą sprzętową, umożliwiając nagrywanie sygnału z mikrofonu i natychmiastowe włączanie go do aktywnej pętli odtwarzanej na głośnikach bez słyszalnego przesunięcia fazowego.",
+      "features": [
+        "Real-time Overdubbing: Nagrywanie i automatyczne zapętlanie warstw dźwiękowych 'w locie'.",
+        "Low-latency Engine: Wykorzystanie biblioteki Oboe (C++) dla osiągnięcia opóźnień poniżej 20ms.",
+        "Multi-channel Mixer: Niezależna kontrola głośności i filtrów dla każdej nałożonej warstwy.",
+        "Buffer Management: Autorski system zarządzania buforami audio zapobiegający trzaskom przy dużym obciążeniu procesora."
+      ],
+      "backend": "C++ (Audio Engine), Android NDK, Google Oboe Library.",
+      "frontend": "Kotlin, Jetpack Compose (Interfejs użytkownika zoptymalizowany pod kątem responsywności).",
+      "database": "SQLite / Room (Przechowywanie konfiguracji sesji i metadanych nagrań).",
+      "other": "Obsługa zewnętrznych interfejsów audio i mikrofonów USB (Audio Class 2.0)."
+    }
   }
 ]
