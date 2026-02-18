@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Baza Danych: Projekty | Portfolio{% endblock %}
+
+{% block content %}
+<section id="projects">
+    <header class="section-header">
+        <h1 class="glitch" data-text="> Baza Danych: Zrealizowane Projekty">
+            > Baza Danych: Zrealizowane Projekty
+        </h1>
+        <p>Wykaz głównych modułów oprogramowania i aplikacji mojego autorstwa.</p>
+    </header>
+
+    <div class="projects-grid" id="projects-container">
+        <div class="loading-state" style="color: var(--neon-cyan); text-align: center; padding: 20px;">
+            [ Pobieranie danych z serwera... ]
+        </div>
+    </div>
+</section>
+
+<style>
+/* --- Styl dla przycisków projektów (Cyjanowy Neon) --- */
+
+.action-btn.btn-cyan {
+    /* Stan spoczynku */
+    border-color: var(--neon-cyan, #00f3ff); /* Używa zmiennej lub domyślnego koloru */
+    color: var(--neon-cyan, #00f3ff);
+    background: transparent;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Płynna animacja */
+}
+
+.action-btn.btn-cyan:hover {
+    /* Stan po najechaniu (Efekt aktywacji) */
+    background-color: rgba(0, 243, 255, 0.15);
+    color: #ffffff; /* Biały tekst dla kontrastu */
+    border-color: var(--neon-cyan, #00f3ff);
+
+    /* Mocna poświata (Glow) */
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.5),
+                inset 0 0 10px rgba(0, 243, 255, 0.2);
+
+    /* Lekkie powiększenie i świecenie tekstu */
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
+}
+
+.action-btn.btn-cyan:active {
+    /* Efekt kliknięcia */
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+}
+
+</style>
+{% endblock %}

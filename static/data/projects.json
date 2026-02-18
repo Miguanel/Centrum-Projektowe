@@ -1,0 +1,142 @@
+[
+  {
+    "id": "01",
+    "title": "Symulator Struktur Danych (EduAlgo)",
+    "tags": ["Praca Dyplomowa", "Algorytmy", "React", "Python"],
+    "description": "Interaktywna platforma edukacyjna wizualizująca działanie struktur danych i zarządzanie pamięcią (Stos vs Sterta) w czasie rzeczywistym. Pomaga zrozumieć wskaźniki poprzez animacje.",
+    "tech": ["React Flow", "FastAPI", "TypeScript", "Vite"],
+    "linkText": "URUCHOM SYMULATOR (LIVE)",
+    "linkUrl": "https://edualgo-app.onrender.com",
+    "details": {
+      "fullDescription": "EduAlgo to nowoczesna aplikacja Full-Stack stworzona, aby obniżyć próg wejścia w naukę złożonych zagadnień informatycznych. Projekt wizualizuje 'czarną skrzynkę', jaką jest pamięć komputera. Zamiast abstrakcyjnego kodu, użytkownik widzi interaktywne bloczki i strzałki, co pozwala zrozumieć różnicę między Stosem a Stertą, wycieki pamięci oraz operacje na wskaźnikach. System łączy precyzję symulacji C++ z przystępnością nowoczesnego interfejsu webowego.",
+      "features": [
+        "Wizualizacja Grafowa (React Flow): Dynamiczne rysowanie węzłów i wskaźników w czasie rzeczywistym.",
+        "Symulacja Pamięci RAM: Autorski silnik symulujący operacje malloc/free oraz inspektor Stosu i Sterty.",
+        "Narracyjny Przewodnik: Unikalny system tłumaczący każdy krok algorytmu za pomocą metafor.",
+        "Biblioteka Algorytmów: 20 scenariuszy, m.in. Listy, Stosy, Kolejki, Drzewa BST, Algorytm Floyda.",
+        "Tryb Sandbox: Piaskownica umożliwiająca ręczne tworzenie i łączenie węzłów, oraz własnych algorytmów wraz z możliwością tworzenia własnych fabularnych treści które opisują przebieg danego algorytmu."
+      ],
+      "backend": "Python + FastAPI (wydajne API), Pydantic (walidacja), Autorski symulator pamięci.",
+      "database": "Symulacja in-memory (stan algorytmu i pamięci wirtualnej przechowywany w RAM serwera).",
+      "frontend": "React + Vite, TypeScript, React Flow (grafy), Zustand (stan), Tailwind CSS.",
+      "other": "Render.com (Hosting), CI/CD (GitHub Actions), Architektura Klient-Serwer."
+    }
+  },
+  {
+    "id": "02",
+    "title": "Mikro-Wojny: Strategia Biologiczna",
+    "tags": ["GameDev", "Vanilla JS", "Symulacja"],
+    "description": "Taktyczna gra RTS w szalce Petriego. Projektujesz własne mikroorganizmy, modyfikujesz ich kod genetyczny i walczysz o dominację w oparciu o fizykę i biologię.",
+    "tech": ["HTML5 Canvas", "Vanilla JS", "CSS3"],
+    "linkText": "URUCHOM GRĘ (LIVE)",
+    "linkUrl": "https://bakterie.onrender.com",
+    "details": {
+      "fullDescription": "Mikro-Wojny to symulator bitew mikrobiologicznych napisany od zera w czystym JavaScript (Vanilla JS), bez użycia silników gier. Projekt łączy mechanikę Deck-building z fizyką ciał sztywnych. Gracz wciela się w inżyniera genetycznego, zarządzając zasobami energii (ATP), aby hodować wyspecjalizowane jednostki – od szybkich wirusów po pancerne niesporczaki – i wystawiać je do walki o przetrwanie w nieprzyjaznym środowisku.",
+      "features": [
+        "Laboratorium i Arena: Dwie fazy rozgrywki – strategiczne planowanie talii genów oraz dynamiczna walka w czasie rzeczywistym.",
+        "Inżynieria Genetyczna: System mutacji nadający unikalne cechy: Mitoza (klonowanie), Apoptoza (wybuchy), Chloroplasty (energia), Cordyceps (wskrzeszanie).",
+        "Zaawansowana Fizyka: Autorski silnik fizyczny obsługujący sprężyste zderzenia, wymianę pędu, odbicia od zakrzywionych ścian i detekcję kolizji.",
+        "System Energii 'Scavenging': Pokonane jednostki rozpadają się na pulsujące kule ATP, które muszą zostać fizycznie zebrane przez inne organizmy.",
+        "Responsywność: Pełna obsługa urządzeń mobilnych (sterowanie dotykowe, skalowanie interfejsu)."
+      ],
+      "backend": "Brak (Logika gry w pełni po stronie klienta).",
+      "database": "LocalStorage (Zapisywanie postępów i konfiguracji talii).",
+      "frontend": "HTML5 Canvas (Rendering), Vanilla JavaScript (ES6+ Modules), CSS3 (Glassmorphism UI, Animations).",
+      "other": "Zero-dependency (Brak zewnętrznych bibliotek i frameworków)."
+    }
+  },
+  {
+    "id": "03",
+    "title": "Kwiatownik",
+    "tags": ["Ziołolecznictwo", "Permakultura", "Python"],
+    "description": "Cyfrowy zielnik i asystent permakulturowy. Aplikacja łączy wiedzę o polskiej florze z systemowym podejściem do ekologii, oferując profile roślin i receptury.",
+    "tech": ["Flask", "JSON Data Store", "Jinja2", "Render"],
+    "linkText": "OTWÓRZ ARCHIWUM (LIVE)",
+    "linkUrl": "https://kwiatownik.onrender.com",
+    "details": {
+      "fullDescription": "Kwiatownik to interaktywna aplikacja webowa będąca nowoczesnym kompendium wiedzy o polskiej florze. Projekt łączy mądrość tradycyjnego ziołolecznictwa, precyzję współczesnej botaniki oraz systemowe podejście permakultury. To nie jest zwykła encyklopedia – to narzędzie dla świadomych ogrodników i zielarzy, pomagające w bezpiecznej identyfikacji roślin, planowaniu gildii ogrodowych oraz wykorzystaniu surowców w domowej apteczce.",
+      "features": [
+        "Rozbudowane Profile Roślin (JSON): Botanika, biochemia oraz unikalny profil energetyczny (termika/wilgotność wg TCM).",
+        "Baza danych mySQL: Przechowywanie kont użytkowników relacyjnie z komentarzami przypisanymi globalnie lub przy poszczególnych sekcjach",
+        "Moduł Permakulturowy: Informacje o gildiach roślinnych i funkcjach ekosystemowych (np. dynamiczne akumulatory azotu).",
+        "Praktyczne Przepisy: Baza receptur medycznych (odwary, nalewki), kulinarnych (dzika kuchnia) i ogrodniczych (gnojówki).",
+        "Kalendarz Zbieracza: Wskazówki dotyczące optymalnego czasu zbiorów dla zachowania substancji czynnych.",
+        "System Identyfikacji: Kluczowe cechy i sekcja 'Możliwe pomyłki' dla bezpieczeństwa użytkownika.",
+        "Generator nalewek: Zaawansowany generator pozwalający na tworzenie własnych eliksirów wykorzystujących poszczególne części roślin."
+      ],
+      "backend": "Python 3.13 + Flask (lekki framework, szybki routing).",
+      "database": "Hybryda mySQL-JSON: Flat-file database (JSON) – ustrukturyzowane pliki ułatwiające edycję i wersjonowanie. MySQL dla magazynowania kont użytkowników oraz komentarzy i notatek.",
+      "frontend": "HTML5, Jinja2 (templating), CSS (responsywny interfejs).",
+      "other": "Deployment na Render + Gunicorn, Dynamiczny routing (slugi), Robust Error Handling."
+    }
+  },
+  {
+    "id": "04",
+    "title": "Bakteriofagocyty: Ekosystem (.io)",
+    "tags": ["Multiplayer", "Socket.io", "Node.js"],
+    "description": "Dynamiczna gra multiplayer osadzona w mikroskopijnym świecie. Gracze projektują własne organizmy, ewoluują i walczą o przetrwanie w nieskończonym, tętniącym życiem środowisku.",
+    "tech": ["Node.js", "Socket.io", "HTML5 Canvas"],
+    "linkText": "POŁĄCZ Z SERWEREM (LIVE)",
+    "linkUrl": "https://arenabacterii.onrender.com",
+    "details": {
+      "fullDescription": "Bakteriofagocyty: Ekosystem to dynamiczna gra przeglądarkowa typu multiplayer (.io). Projekt łączy zręcznościową rozgrywkę z elementami strategii i inżynierii biologicznej. Gracze wcielają się w ewoluujące mikroorganizmy, walcząc o zasoby i dominację. Serce gry stanowi edytor DNA, pozwalający na swobodne projektowanie struktury organizmu z dostępnych modułów.",
+      "features": [
+        "Modułowy Edytor DNA: Projektowanie organizmu komórka po komórce (Rdzeń, Wić, Broń, Pancerze, Chloroplasty).",
+        "Nieskończony Świat: Mechanika świata toroidalnego (wrapping) eliminująca granice mapy i 'campienie' w rogach.",
+        "Zaawansowane AI (NPC): Ekosystem wypełniony botami o różnych strategiach (agresywni Łowcy, defensywne Pancerniki, pasywna Flora).",
+        "Silnik Fizyczny: Realistyczna bezwładność, kolizje (Body Collision) i dynamiczna rekalibracja środka ciężkości w czasie rzeczywistym.",
+        "Zmienne Środowisko: Strefy wpływające na rozgrywkę (Złote Promienie regenerujące energię, Toksyczne Chmury, Bunkier ochronny).",
+        "Tryb Obserwatora: Możliwość swobodnego śledzenia życia w ekosystemie po śmierci."
+      ],
+      "backend": "Node.js + Express, Socket.io (wymiana danych realtime, pętla fizyki 60 TPS).",
+      "database": "In-Memory (Stan świata przechowywany i przetwarzany w pamięci RAM serwera).",
+      "frontend": "HTML5 Canvas (Autorski silnik renderujący), Optymalizacja sieciowa i graficzna.",
+      "other": "Architektura Klient-Serwer, Deployment chmurowy (Render), Obsługa wielu graczy jednocześnie."
+    }
+  },
+  {
+    "id": "05",
+    "title": "Memikoza - Agregator Treści",
+    "tags": ["Web Scraping", "Automatyzacja", "Python"],
+    "description": "Automat skanujący sieć co 30 minut w poszukiwaniu nowych memów. Agreguje treści z wielu domen, oddzielając obrazy od wideo i dbając o płynne odtwarzanie multimediów.",
+    "tech": ["Python (BeautifulSoup)", "Harmonogram Zadań (Cron)", "HTML5 Video"],
+    "linkText": "ZOBACZ SZCZEGÓŁY",
+    "linkUrl": "https://memikoza.onrender.com",
+    "details": {
+      "fullDescription": "Memikoza to aplikacja typu 'Set & Forget' – w pełni zautomatyzowany agregator treści humorystycznych. System eliminuje konieczność ręcznego odwiedzania wielu serwisów, centralizując content w jednym miejscu. Głównym elementem backendu jest bot, który cyklicznie wykonuje żądania HTTP do zdefiniowanych domen, parsuje ich strukturę DOM i ekstrahuje bezpośrednie linki do zasobów.",
+      "features": [
+        "Cykliczny Scraper (Cron): Algorytm uruchamia się automatycznie co 30 minut, skanując domeny w poszukiwaniu nowych materiałów.",
+        "Inteligentny Układ (Layout): System najpierw wyświetla lekkie memy obrazkowe (góra strony), a treści wideo ładuje na dole, optymalizując czas renderowania.",
+        "Video UX: Materiały wideo są domyślnie wyciszone (Muted) i uruchamiane automatycznie (Autoplay), co zapewnia płynność przeglądania bez nagłych ataków dźwięku.",
+        "Parsowanie Struktur HTML: Obsługa różnych układów stron źródłowych i ekstrakcja metadanych (tytuł, źródło)."
+      ],
+      "backend": "Python (skrypty scrappujące), Biblioteki do parsowania BeautifulSoup4 i LXML).",
+      "database": "Przechowywanie linków i metadanych jest trzymana w pamięci RAM w strukturze LIFO",
+      "frontend": "HTML5, CSS3, JavaScript (obsługa odtwarzacza wideo i układu siatki).",
+      "other": "Automatyzacja zadań (Scheduler), Obsługa błędów sieciowych (Retries)."
+    }
+  },
+  {
+    "id": "06",
+    "title": "GeoCommunity Funding Platform",
+    "tags": ["GIS", "Crowdfunding", "Python"],
+    "description": "Interaktywna platforma łącząca system informacji przestrzennej z mechanizmem zbiórek. Umożliwia mieszkańcom zgłaszanie i finansowanie lokalnych inicjatyw bezpośrednio na mapie.",
+    "tech": ["FastAPI", "PostgreSQL/PostGIS", "Leaflet.js", "Docker"],
+    "linkText": "ZOBACZ SZCZEGÓŁY",
+    "linkUrl": "#",
+    "details": {
+      "fullDescription": "Projekt rozwiązuje problem braku precyzyjnej lokalizacji zgłoszeń obywatelskich i angażuje społeczność w finansowanie zmian. Aplikacja pozwala użytkownikom nie tylko zgłaszać problemy (np. 'naprawa ławki'), ale precyzyjnie rysować ich obszar na mapie (poligony/punkty). System integruje te dane geometryczne z modułem płatności, tworząc transparentny mechanizm crowdfundingu dla małych infrastruktur.",
+      "features": [
+        "Interaktywna mapa (GIS): Rysowanie i edycja kształtów reprezentujących zadania (Leaflet.js).",
+        "System zadań: Zgłoszenia ze zdjęciami poglądowymi i kwotą docelową.",
+        "Crowdfunding: Real-time aktualizacja stanu zbiórki i system wpłat.",
+        "Raportowanie: Komentarze i zdjęcia dokumentujące postępy (dowody wykonania).",
+        "Bezpieczeństwo: Rejestracja i logowanie oparte o JWT."
+      ],
+      "backend": "Python 3.10+, FastAPI (asynchroniczne API), SQLAlchemy (ORM).",
+      "database": "PostgreSQL z rozszerzeniem PostGIS (dane geometryczne WKT/GeoJSON).",
+      "frontend": "HTML5, Tailwind CSS, Vanilla JS (ES6+), Leaflet.js.",
+      "other": "Docker, REST API, Obsługa przesyłania plików."
+    }
+  }
+]

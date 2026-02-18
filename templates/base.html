@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}System Centralny{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}">[ Terminal Główny ]</a>
+            <a href="{{ url_for('projects') }}">[ Baza Danych: Projekty ]</a>
+            <a href="{{ url_for('lab') }}">[ Laboratorium: Plany ]</a>
+            <a href="{{ url_for('kontakt') }}">[ Kontakt ]</a>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <div id="modal-container"></div>
+
+    <canvas id="circuitCanvas"></canvas>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

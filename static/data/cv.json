@@ -1,0 +1,20 @@
+[
+  {
+    "id": "PL",
+    "lang": "Polski",
+    "filename": "Jan_Kowalski_CV_PL.pdf",
+    "description": "Standardowy protokół komunikacyjny. Wersja pełna."
+  },
+  {
+    "id": "EN",
+    "lang": "English",
+    "filename": "Jan_Kowalski_CV_EN.pdf",
+    "description": "International protocol. Full stack specification."
+  },
+  {
+    "id": "ATS",
+    "lang": "ATS Optimized",
+    "filename": "Jan_Kowalski_CV_ATS.pdf",
+    "description": "Wersja uproszczona, zoptymalizowana pod skanery systemowe."
+  }
+]

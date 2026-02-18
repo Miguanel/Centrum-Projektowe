@@ -1,0 +1,24 @@
+[
+
+  {
+    "id": "01",
+    "title": "WSM Chemical Bonds: Rezonans Falowy",
+    "status": "Konceptualizacja / R&D",
+    "description": "Symulator wiązań chemicznych oparty na teorii Falowej Struktury Materii (WSM). Zamiast statycznych modeli kulkowych, projekt wizualizuje interferencję sferycznych fal stojących atomów, tworząc dynamiczne pola rezonansowe.",
+    "tech": ["Vanilla JS", "HTML5 Canvas", "Fizyka Kwantowa"]
+  },
+  {
+    "id": "02",
+    "title": "Quantum Modulator: Architekt Systemu",
+    "status": "Badania i Rozwój",
+    "description": "Modułowe środowisko do projektowania komputerów kwantowych. Użytkownik buduje systemy z gotowych segmentów (pułapki jonowe, bramki logiczne), obserwując ewolucję stanu Qubita na sferze Blocha w czasie rzeczywistym.",
+    "tech": ["React Flow", "FastAPI", "Macierze Prawdopodobieństwa"]
+  },
+  {
+    "id": "03",
+    "title": "LoopMaster Pro: Web Audio Engine",
+    "status": "Prototypowanie UX",
+    "description": "Zaawansowany looper DJ wykorzystujący Web Audio API. System pozwala na nakładanie pętli audio z mikrofonu w czasie rzeczywistym (overdubbing) przy wykorzystaniu technologii AudioWorklets dla minimalizacji latencji.",
+    "tech": ["Web Audio API", "AudioWorklets", "JavaScript"]
+  }
+]
