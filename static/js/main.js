@@ -277,13 +277,36 @@ document.addEventListener('DOMContentLoaded', () => {
             let allSegments = [];
             let elementOccupied = new Set();
 
-            const obstacleElements = document.querySelectorAll('.project-card, .lab-item, .action-btn, nav a, .badge, .word-obstacle, .cv-btn');
+            const obstacleElements = document.querySelectorAll(
+                '.project-card, .lab-item, .action-btn, nav a, .cv-btn, .bio-card, .nav-card, .log-entry, h1.glitch, h2.section-title, .bio-card h3, .word-obstacle'
+            );
+
             const obstacles = Array.from(obstacleElements)
-            .filter(el => el !== element && !el.closest('#modal-container'))
-            .map(el => {
+                .filter(el => {
+                    // 1. Ignoruj sam element, od którego zaczynamy
+                    if (el === element) return false;
+
+                    // 2. KLUCZOWE: Ignoruj wszystko, co jest wewnątrz kontenera modala
+                    if (el.closest('#modal-container') || el.closest('.modal-backdrop')) return false;
+
+                    // 3. Ignoruj elementy ukryte (np. display: none, opacity: 0)
+                    // Sprawdzamy czy element zajmuje jakąkolwiek przestrzeń
                     const r = el.getBoundingClientRect();
-                    const isWord = el.classList.contains('word-obstacle');
-                    const clearance = isWord ? 0 : 2;
+                    if (r.width === 0 || r.height === 0) return false;
+
+                    return true;
+                })
+                .map(el => {
+                    const r = el.getBoundingClientRect();
+
+                    // Czy to nagłówek?
+                    const isHeader = el.matches('h1, h2, h3, .section-title, .glitch');
+
+                    let clearance = 4; // Standardowy odstęp
+
+                    // Dla nagłówków dajemy średni margines (nie za duży, nie za mały)
+                    if (isHeader) clearance = 10;
+
                     return {
                         left: r.left + scrollX - clearance,
                         right: r.right + scrollX + clearance,

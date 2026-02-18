@@ -217,5 +217,39 @@
         @media (max-width: 600px) {
             .bio-stats { flex-direction: column; gap: 5px; }
         }
+
+        .hero-section, .section-header {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    pointer-events: none; /* Przepuszcza myszkę */
+    }
+
+    /* 2. Sam tekst staje się "cegłą" (inline-block) */
+    h1.glitch, h2.section-title, .bio-card h3 {
+        display: inline-block;       /* KLUCZOWE: Pudełko kurczy się do tekstu */
+        position: relative;
+        pointer-events: auto;        /* Przywraca interakcję */
+        background: #050510;         /* Tło w kolorze strony (maskuje linie pod spodem) */
+        padding: 10px 20px;          /* Margines wewnątrz prostokąta */
+        border-radius: 4px;          /* Lekkie zaokrąglenie */
+        z-index: 10;                 /* Tekst zawsze na wierzchu */
+
+        /* Opcjonalnie: delikatna ramka, żebyś widział ten obszar (możesz usunąć) */
+        /* border: 1px dashed rgba(0, 243, 255, 0.2); */
+    }
+    .bio-card {
+    pointer-events: auto !important; /* Myszka znów widzi ten element */
+    position: relative;
+    z-index: 5; /* Upewniamy się, że jest nad płótnem */
+    background: #050510; /* Tło zakrywa ewentualne linie pod spodem */
+    }
+
+    /* Opcjonalnie: poprawa wyglądu tekstu wewnątrz */
+    .bio-content {
+        position: relative;
+        z-index: 6;
+    }
+
     </style>
 {% endblock %}
