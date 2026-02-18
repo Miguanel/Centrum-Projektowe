@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!document.getElementById('project-backdrop')) {
             modalContainer.insertAdjacentHTML('beforeend', `
                 <div class="modal-backdrop" id="project-backdrop">
-                    <div class="modal-window project-card" style="max-width: 800px; width: 95%;">
-                        <button class="close-modal" id="close-project">×</button>
+                    <div class="modal-window project-card">
+                        <button class="close-modal" id="close-project">[ X ] CLOSE_TERMINAL</button>
                         <div id="project-modal-content"></div>
                     </div>
                 </div>

@@ -372,3 +372,36 @@ canvas#circuitCanvas {
     position: relative;
     z-index: 10; /* Wyżej niż tło */
 }
+
+/* Stylizacja okna modala - umożliwienie przewijania */
+.modal-window.project-card {
+    max-height: 90vh; /* Maksymalnie 90% wysokości ekranu */
+    overflow-y: auto; /* Włącza przewijanie pionowe gdy treść jest długa */
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-cyan) #000;
+}
+
+/* Stylizacja przycisku zamknięcia */
+.close-modal {
+    position: sticky; /* Przyklejony do góry podczas przewijania */
+    top: 0;
+    float: right;
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    padding: 5px 12px;
+    cursor: pointer;
+    text-shadow: 0 0 5px var(--neon-cyan);
+    box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
+    transition: all 0.3s ease;
+    z-index: 100;
+    margin-bottom: 10px;
+}
+
+.close-modal:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
