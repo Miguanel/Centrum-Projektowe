@@ -268,8 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const obstacleElements = document.querySelectorAll('.project-card, .lab-item, .action-btn, nav a, .badge, .word-obstacle, .cv-btn');
             const obstacles = Array.from(obstacleElements)
-                .filter(el => el !== element)
-                .map(el => {
+            .filter(el => el !== element && !el.closest('#modal-container'))
+            .map(el => {
                     const r = el.getBoundingClientRect();
                     const isWord = el.classList.contains('word-obstacle');
                     const clearance = isWord ? 0 : 2;
