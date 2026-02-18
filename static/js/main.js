@@ -50,9 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             >> SPECYFIKACJA
                         </button>
 
-                        <a href="${p.linkUrl}" target="_blank" rel="noopener noreferrer" class="action-btn" style="flex: 1; text-align: center; text-decoration: none;">
-                            >> URUCHOM LIVE
-                        </a>
+                        ${p.linkUrl && p.linkUrl !== "#" ? `
+                            <a href="${p.linkUrl}" target="_blank" rel="noopener noreferrer" class="action-btn" style="flex: 1; text-align: center; text-decoration: none;">
+                                >> URUCHOM LIVE
+                            </a>
+                        ` : ''}
                     </div>
                 </div>
             </article>
