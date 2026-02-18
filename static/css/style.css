@@ -406,21 +406,23 @@ canvas#circuitCanvas {
     box-shadow: 0 0 15px var(--neon-cyan);
 }
 
-/* Styl dla urządzeń mobilnych (ekrany poniżej 600px) */
-@media (max-width: 600px) {
+/* Styl dla urządzeń mobilnych */
+@media (max-width: 700px) {
     .nav-container {
         display: flex;
-        justify-content: center;
-        flex-wrap: nowrap; /* Wymuszenie jednego rzędu */
-        overflow-x: auto;  /* Dodanie przewijania poziomego w razie potrzeby */
-        gap: 5px;          /* Minimalny odstęp między przyciskami */
-        padding: 10px 5px;
+        flex-direction: column; /* To ustawia elementy pionowo */
+        align-items: center;    /* Wyśrodkowuje przyciski */
+        gap: 10px;              /* Dodaje odstęp między przyciskami */
+        padding: 15px 0;
+        height: auto;           /* Pozwala kontenerowi rosnąć w dół */
     }
 
     .nav-container a {
-        font-size: 0.75rem; /* Zmniejszenie czcionki */
-        padding: 5px 8px;   /* Zmniejszenie wewnętrznych odstępów */
-        white-space: nowrap; /* Blokada łamania tekstu wewnątrz przycisku */
-        letter-spacing: 0px; /* Zmniejszenie rozstrzelenia liter */
+        width: 80%;             /* Przyciski zajmują 80% szerokości ekranu */
+        max-width: 300px;       /* Ale nie więcej niż 300px (dla tabletów) */
+        text-align: center;     /* Tekst wyśrodkowany w przycisku */
+        white-space: nowrap;    /* KLUCZOWE: Zapobiega łamaniu tekstu wewnątrz nawiasów [ ] */
+        display: block;
+        margin: 0 auto;         /* Dodatkowe centrowanie */
     }
 }
