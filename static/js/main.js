@@ -452,9 +452,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function startEffect(e) {
-            if (!activePaths.has(e.currentTarget)) {
-                const data = generateBranchingPath(e.currentTarget);
-                activePaths.set(e.currentTarget, data);
+            const element = e.currentTarget;
+
+            // --- KLUCZOWA POPRAWKA: Dynamiczne sprawdzanie terytorium organicznego ---
+            if (element.dataset.organic === "true" || element.closest('[data-organic="true"]')) {
+                return; // Przerwij działanie starego silnika!
+            }
+
+            if (!activePaths.has(element)) {
+                const data = generateBranchingPath(element);
+                activePaths.set(element, data);
                 if (!animationFrameId) update();
             }
         }
@@ -474,13 +481,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.refreshCircuitListeners = () => {
             const interactiveElements = document.querySelectorAll('.project-card, .lab-item, .action-btn, nav a, .cv-btn, .open-lab-btn, .open-project-btn');
+
             interactiveElements.forEach(el => {
                 if (el.dataset.listenerAttached) return;
                 el.dataset.listenerAttached = "true";
 
                 el.addEventListener('mouseenter', startEffect);
                 el.addEventListener('mouseleave', stopEffect);
+
                 el.addEventListener('touchstart', (e) => {
+                    // Dodatkowe zabezpieczenie dla mobile
+                    if (el.dataset.organic === "true" || el.closest('[data-organic="true"]')) return;
+
                     activePaths.forEach(v => v.occupiedPoints.forEach(pt => globalOccupied.delete(pt)));
                     activePaths.clear();
                     startEffect(e);

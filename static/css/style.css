@@ -334,16 +334,7 @@ nav a:hover {
     padding-top: 20px;
 }
 
-/* 1. Naprawa tła - Canvas musi być pod spodem i ignorować kliknięcia */
-canvas#circuitCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Przesuń pod spód */
-    pointer-events: none; /* WAŻNE: Przepuszczaj kliknięcia do strony */
-}
+
 
 /* 2. Naprawa Modala - musi ignorować kliknięcia, gdy jest ukryty */
 .modal-backdrop {
@@ -425,4 +416,23 @@ canvas#circuitCanvas {
         display: block;
         margin: 0 auto;         /* Dodatkowe centrowanie */
     }
+}
+
+canvas#flowerCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Głębiej niż circuitCanvas, lub na tym samym poziomie */
+    pointer-events: none;
+}
+canvas#circuitCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
 }
