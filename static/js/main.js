@@ -486,12 +486,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (el.dataset.listenerAttached) return;
                 el.dataset.listenerAttached = "true";
 
-                el.addEventListener('mouseenter', startEffect);
-                el.addEventListener('mouseleave', stopEffect);
+                // Funkcja sprawdzająca, czy element (lub jego rodzic) obsługuje specjalną animację
+                const hasSpecialAnimation = () => {
+                    return el.dataset.organic === "true" ||
+                           el.dataset.type === "city" ||
+                           el.closest('[data-organic="true"]') ||
+                           el.closest('[data-type="city"]');
+                };
 
+                // Nasłuchiwanie na wejście myszki - blokujemy obwody dla specjalnych kart
+                el.addEventListener('mouseenter', (e) => {
+                    if (hasSpecialAnimation()) return;
+                    startEffect(e);
+                });
+
+                // Nasłuchiwanie na wyjście myszki - blokujemy, żeby główny skrypt nie czyścił canvasu!
+                el.addEventListener('mouseleave', (e) => {
+                    if (hasSpecialAnimation()) return;
+                    stopEffect(e);
+                });
+
+                // Nasłuchiwanie na dotyk (mobile)
                 el.addEventListener('touchstart', (e) => {
-                    // Dodatkowe zabezpieczenie dla mobile
-                    if (el.dataset.organic === "true" || el.closest('[data-organic="true"]')) return;
+                    if (hasSpecialAnimation()) return;
 
                     activePaths.forEach(v => v.occupiedPoints.forEach(pt => globalOccupied.delete(pt)));
                     activePaths.clear();
