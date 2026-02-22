@@ -439,3 +439,56 @@ canvas#circuitCanvas {
     z-index: -2;
     pointer-events: none;
 }
+
+/* --- FULLSCREEN IMAGE VIEWER --- */
+.image-viewer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(5, 10, 15, 0.95);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.image-viewer-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.image-viewer-overlay img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+    cursor: grab;
+    transition: transform 0.1s ease-out; /* Płynność przybliżania */
+    will-change: transform;
+}
+
+.image-viewer-overlay img:active {
+    cursor: grabbing;
+}
+
+.viewer-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--neon-cyan, #00f3ff);
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+    text-shadow: 0 0 10px var(--neon-cyan, #00f3ff);
+    transition: transform 0.2s;
+}
+
+.viewer-close:hover {
+    transform: scale(1.2);
+}

@@ -454,10 +454,13 @@ document.addEventListener('DOMContentLoaded', () => {
         function startEffect(e) {
             const element = e.currentTarget;
 
-            // --- KLUCZOWA POPRAWKA: Dynamiczne sprawdzanie terytorium organicznego ---
-            if (element.dataset.organic === "true" || element.closest('[data-organic="true"]')) {
-                return; // Przerwij działanie starego silnika!
-            }
+            // Zabezpieczenie przed kartami specjalnymi
+            if (element.dataset.organic === "true" || element.closest('[data-organic="true"]')) return;
+            if (element.dataset.type === "city" || element.closest('[data-type="city"]')) return;
+
+            // Wyłączamy specjalne animacje, jeśli jakieś aktualnie trwają!
+            if (window.stopFlowerAnimation) window.stopFlowerAnimation();
+            if (window.stopCityAnimation) window.stopCityAnimation();
 
             if (!activePaths.has(element)) {
                 const data = generateBranchingPath(element);
@@ -478,6 +481,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
         }
+
+        window.stopAllCircuits = () => {
+            activePaths.forEach(v => v.occupiedPoints.forEach(pt => globalOccupied.delete(pt)));
+            activePaths.clear();
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
 
         window.refreshCircuitListeners = () => {
             const interactiveElements = document.querySelectorAll('.project-card, .lab-item, .action-btn, nav a, .cv-btn, .open-lab-btn, .open-project-btn');

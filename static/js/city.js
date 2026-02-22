@@ -199,6 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startConstruction(e) {
+        if (window.stopAllCircuits) window.stopAllCircuits();
+        if (window.stopFlowerAnimation) window.stopFlowerAnimation();
+
         if (activeCard === e.currentTarget) return;
         activeCard = e.currentTarget;
 
@@ -263,6 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
     }
+
+    window.stopCityAnimation = stopConstruction;
 
     const finderInterval = setInterval(() => {
         const headers = document.querySelectorAll('.project-card h2');

@@ -175,8 +175,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startGrowth(e) {
+        if (window.stopAllCircuits) window.stopAllCircuits();
+        if (window.stopCityAnimation) window.stopCityAnimation();
+
         if (activeCard === e.currentTarget) return;
         activeCard = e.currentTarget;
+
         branchesToAnimate = [];
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         if (animationId) cancelAnimationFrame(animationId);
@@ -237,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
     }
+    window.stopFlowerAnimation = stopGrowth;
 
     const finderInterval = setInterval(() => {
         const flowerCard = Array.from(document.querySelectorAll('.project-card')).find(card => card.innerText.includes('Kwiatownik'));
