@@ -42,7 +42,10 @@
       "backend": "Brak (Logika gry w pełni po stronie klienta).",
       "database": "LocalStorage (Zapisywanie postępów i konfiguracji talii).",
       "frontend": "HTML5 Canvas (Rendering), Vanilla JavaScript (ES6+ Modules), CSS3 (Glassmorphism UI, Animations).",
-      "other": "Zero-dependency (Brak zewnętrznych bibliotek i frameworków)."
+      "other": "Zero-dependency (Brak zewnętrznych bibliotek i frameworków).",
+      "screenshots": [
+      "/static/images/bakterie-arena-diagram-AI.png"
+      ]
     }
   },
   {
