@@ -248,8 +248,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (flowerCard) {
             clearInterval(finderInterval);
             flowerCard.dataset.organic = "true";
+
+            // Standardowa mysz
             flowerCard.addEventListener('mouseenter', startGrowth);
             flowerCard.addEventListener('mouseleave', stopGrowth);
+
+            // --- NOWOŚĆ: Obsługa dotyku podczas przewijania ---
+            flowerCard.addEventListener('touchstart', (e) => {
+                startGrowth(e);
+            }, { passive: true }); // passive: true pozwala na płynne przewijanie strony
         }
     }, 500);
 });

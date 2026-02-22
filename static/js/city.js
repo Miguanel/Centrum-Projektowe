@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ZMIANA: Pobieramy circuitCanvas zamiast flowerCanvas
     const canvas = document.getElementById('circuitCanvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -6,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let buildingsToAnimate = [];
     let animationId = null;
     let activeCard = null;
-    let currentObstacles = []; // Przechowuje inne karty jako przeszkody
+    let currentObstacles = [];
 
     class Building2D {
         constructor(x, y, side, angle) {
@@ -15,14 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
             this.side = side;
             this.angle = angle;
 
-            // --- ZMIANA 1: Zróżnicowana skala dla boków i góry/dołu ---
             if (this.side === 'left' || this.side === 'right') {
-                this.targetWidth = 10 + Math.random() * 12;  // Cieńsze na bokach (10-22px)
-                this.targetHeight = 15 + Math.random() * 20; // Znacznie niższe (15-35px)
-                this.hasDoor = false; // Usuwamy drzwi z bocznych, bo są za małe
+                this.targetWidth = 10 + Math.random() * 12;
+                this.targetHeight = 15 + Math.random() * 20;
+                this.hasDoor = false;
             } else {
-                this.targetWidth = 15 + Math.random() * 25;  // Szersze na górze/dole (15-40px)
-                this.targetHeight = 30 + Math.random() * 50; // Wyższe (30-80px)
+                this.targetWidth = 15 + Math.random() * 25;
+                this.targetHeight = 30 + Math.random() * 50;
                 this.hasDoor = Math.random() > 0.2;
             }
 
@@ -44,9 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         update() {
             if (this.currentHeight < this.targetHeight) {
                 let nextH = this.currentHeight + this.growthSpeed;
-
-                // --- ZMIANA 2: RADAR KOLIZYJNY ---
-                // Obliczamy fizyczną pozycję czubka budynku na ekranie
                 let tipX = this.x;
                 let tipY = this.y;
 
@@ -55,18 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 else if (this.side === 'left') tipX -= nextH;
                 else if (this.side === 'right') tipX += nextH;
 
-                // Sprawdzamy, czy czubek nie uderzył w inną kartę (z marginesem 5px)
                 const hit = currentObstacles.some(obs =>
                     tipX >= obs.left - 5 && tipX <= obs.right + 5 &&
                     tipY >= obs.top - 5 && tipY <= obs.bottom + 5
                 );
 
                 if (hit) {
-                    // Jeśli dotknął innej karty, zatrzymujemy wzrost na obecnym poziomie!
                     this.targetHeight = this.currentHeight;
                     this.isFinished = true;
                 } else {
-                    // Jeśli droga wolna, rośnie dalej
                     this.currentHeight = nextH;
                     if (this.currentHeight >= this.targetHeight) {
                         this.currentHeight = this.targetHeight;
@@ -77,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         draw() {
-            if (this.currentHeight < 1) return; // Nie rysujemy zerowych budynków
+            if (this.currentHeight < 1) return;
             const scrollX = window.scrollX;
             const scrollY = window.scrollY;
 
@@ -94,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let w = this.targetWidth;
             let h = this.currentHeight;
 
-            // Główna bryła
             ctx.beginPath();
             ctx.rect(-w/2, -h, w, h);
             ctx.fill();
@@ -103,12 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.shadowBlur = 2;
             ctx.lineWidth = 0.8;
 
-            // Drzwi
             if (this.hasDoor && h > 10) {
                 let doorW = w * 0.4;
                 if (doorW > 12) doorW = 12;
                 let doorH = 10;
-
                 ctx.beginPath();
                 ctx.rect(-doorW/2, -doorH, doorW, doorH);
                 if (doorW >= 8) {
@@ -118,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.stroke();
             }
 
-            // Okna (maskowane do wysokości)
             ctx.save();
             ctx.beginPath();
             ctx.rect(-w/2, -h, w, h);
@@ -127,13 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.winCols > 0 && this.winRows > 0) {
                 let winW = (w / this.winCols) * 0.4;
                 let winH = (this.targetHeight / this.winRows) * 0.4;
-
                 ctx.beginPath();
                 for (let r = 0; r < this.winRows; r++) {
                     if (this.hasDoor && r === 0) continue;
-
                     let wy = -12 - (r * (this.targetHeight / this.winRows));
-
                     for (let c = 0; c < this.winCols; c++) {
                         let wx = -w/2 + (w / this.winCols) * c + (w / this.winCols - winW)/2;
                         if (wy < -h) continue;
@@ -144,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             ctx.restore();
 
-            // Dach
             ctx.shadowBlur = 4;
             ctx.lineWidth = 1.2;
             ctx.fillStyle = `rgba(10, 25, 35, 0.95)`;
@@ -199,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startConstruction(e) {
+        // ZATRZYMYWANIE INNYCH ANIMACJI
         if (window.stopAllCircuits) window.stopAllCircuits();
         if (window.stopFlowerAnimation) window.stopFlowerAnimation();
 
@@ -213,8 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollX = window.scrollX;
         const scrollY = window.scrollY;
 
-        // --- SKANOWANIE PRZESZKÓD ---
-        // Zbiera pozycje innych kart, żeby budynki w nie nie wjechały
         currentObstacles = Array.from(document.querySelectorAll('.project-card, .lab-item'))
             .filter(el => el !== activeCard && !activeCard.contains(el))
             .map(el => {
@@ -227,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const usableHeight = rect.height - margin * 2;
         const density = 35;
 
-        // GÓRA
         const numTop = Math.floor(usableWidth / density);
         for(let i=0; i <= numTop; i++) {
             let bx = rect.left + scrollX + margin + (i * (usableWidth/numTop));
@@ -235,14 +219,12 @@ document.addEventListener('DOMContentLoaded', () => {
             buildingsToAnimate.push(new Building2D(bx, rect.top + scrollY, 'top', 0));
         }
 
-        // DÓŁ
         for(let i=0; i <= numTop; i++) {
             let bx = rect.left + scrollX + margin + (i * (usableWidth/numTop));
             bx += (Math.random() * 10 - 5);
             buildingsToAnimate.push(new Building2D(bx, rect.bottom + scrollY, 'bottom', Math.PI));
         }
 
-        // LEWO
         const numLeft = Math.floor(usableHeight / density);
         for(let i=0; i <= numLeft; i++) {
             let by = rect.top + scrollY + margin + (i * (usableHeight/numLeft));
@@ -250,7 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
             buildingsToAnimate.push(new Building2D(rect.left + scrollX, by, 'left', -Math.PI/2));
         }
 
-        // PRAWO
         for(let i=0; i <= numLeft; i++) {
             let by = rect.top + scrollY + margin + (i * (usableHeight/numLeft));
             by += (Math.random() * 10 - 5);
@@ -267,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
     }
 
+    // Eksporujemy funkcję zatrzymującą dla innych skryptów
     window.stopCityAnimation = stopConstruction;
 
     const finderInterval = setInterval(() => {
@@ -283,8 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(finderInterval);
             targetCard.dataset.type = "city";
 
-            targetCard.style.transition = "box-shadow 0.3s ease, border-color 0.3s ease";
-
             targetCard.addEventListener('mouseenter', (e) => {
                 targetCard.style.borderColor = "#00f3ff";
                 targetCard.style.boxShadow = "0 0 25px rgba(0, 243, 255, 0.3)";
@@ -296,6 +276,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetCard.style.boxShadow = "";
                 stopConstruction();
             });
+
+            // --- NOWOŚĆ: Obsługa dotyku dla GeoCommunity ---
+            targetCard.addEventListener('touchstart', (e) => {
+                targetCard.style.borderColor = "#00f3ff";
+                startConstruction(e);
+            }, { passive: true });
         }
     }, 500);
 });
