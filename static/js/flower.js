@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('flowerCanvas');
+    const canvas = document.getElementById('circuitCanvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
