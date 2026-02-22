@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (!allFinished && buildingsToAnimate.length > 0) {
-             animationId = requestAnimationFrame(animate);
+            animationId = requestAnimationFrame(animate);
         }
     }
 
@@ -189,11 +189,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.stopAllCircuits) window.stopAllCircuits();
         if (window.stopFlowerAnimation) window.stopFlowerAnimation();
 
-        if (activeCard === e.currentTarget) return;
-        activeCard = e.currentTarget;
+        // Jeśli ta sama karta jest już aktywna, nie resetuj wszystkiego od zera
+        if (activeCard === e.currentTarget && buildingsToAnimate.length > 0) return;
 
+        activeCard = e.currentTarget;
         buildingsToAnimate = [];
         if (animationId) cancelAnimationFrame(animationId);
+
+        // Czyścimy przed nowym startem
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         const rect = activeCard.getBoundingClientRect();
@@ -242,15 +245,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function stopConstruction() {
+        // Nie czyścimy canvasu gwałtownie - pozwalamy budynkom zostać na ekranie
+        // lub zniknąć dopiero gdy inna animacja przejmie canvas.
+        activeCard = null;
+        // buildingsToAnimate = []; // Zakomentuj to, żeby budynki nie znikały nagle
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+    }
+
+    // Eksporujemy funkcję zatrzymującą dla innych skryptów
+    window.stopCityAnimation = () => {
         activeCard = null;
         buildingsToAnimate = [];
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
-    }
-
-    // Eksporujemy funkcję zatrzymującą dla innych skryptów
-    window.stopCityAnimation = stopConstruction;
-
+    };
     const finderInterval = setInterval(() => {
         const headers = document.querySelectorAll('.project-card h2');
         let targetCard = null;
@@ -265,21 +276,13 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(finderInterval);
             targetCard.dataset.type = "city";
 
-            targetCard.addEventListener('mouseenter', (e) => {
-                targetCard.style.borderColor = "#00f3ff";
-                targetCard.style.boxShadow = "0 0 25px rgba(0, 243, 255, 0.3)";
-                startConstruction(e);
-            });
+            targetCard.addEventListener('mouseenter', startConstruction);
+            targetCard.addEventListener('mouseleave', stopConstruction);
 
-            targetCard.addEventListener('mouseleave', (e) => {
-                targetCard.style.borderColor = "";
-                targetCard.style.boxShadow = "";
-                stopConstruction();
-            });
-
-            // --- NOWOŚĆ: Obsługa dotyku dla GeoCommunity ---
+            // Poprawiona obsługa dotyku
             targetCard.addEventListener('touchstart', (e) => {
-                targetCard.style.borderColor = "#00f3ff";
+                // Wymuszamy restart animacji przy dotknięciu
+                activeCard = null;
                 startConstruction(e);
             }, { passive: true });
         }
