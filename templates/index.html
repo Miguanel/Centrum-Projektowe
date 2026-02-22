@@ -3,85 +3,135 @@
 {% block title %}Strefa Zero | Portfolio{% endblock %}
 
 {% block content %}
-    <div class="hero-section">
-        <h1 class="glitch" data-text="> WITAJ W SYSTEMIE">
-            > WITAJ W SYSTEMIE
-        </h1>
+<div class="hero-section">
+    <h1 class="glitch" data-text="> WITAJ W SYSTEMIE">
+        > WITAJ W SYSTEMIE
+    </h1>
 
-        <div class="project-card bio-card">
-            <h3>[ O MNIE: PROFIL UŻYTKOWNIKA ]</h3>
-            <div class="bio-content">
-                <p>
-                    Jestem inżynierem oprogramowania specjalizującym się w <span class="highlight">architekturze backendowej</span> i <span class="highlight">optymalizacji systemów</span>.
-                    Moim celem jest tworzenie kodu, który jest nie tylko funkcjonalny, ale również elegancki i skalowalny.
-                    W wolnym czasie eksploruję nowe technologie i rozwijam projekty open-source.
-                </p>
-                <div class="bio-stats">
-                    <span>Lokalizacja: <strong>Silesia, PL</strong></span>
-                    <span>Status: <strong>Otwarty na współpracę</strong></span>
-                </div>
+    <div class="project-card bio-card">
+        <h3>[ O MNIE: ]</h3>
+        <div class="bio-content">
+            <p>
+                Jestem inżynierem oprogramowania specjalizującym się w <span
+                    class="highlight">architekturze backendowej</span> i <span
+                    class="highlight">optymalizacji systemów</span>. Moja praca zaczyna się tam, gdzie kończą się
+                standardowe schematy – łączę technologiczną precyzję z dużą dawką kreatywności, co pozwala mi z
+                naturalną lekkością przekuwać nawet najtrudniejsze i najbardziej nieszablonowe pomysły w wysokowydajną
+                rzeczywistość. Projektuję rozwiązania, które pod maską kryją złożone mechanizmy, ale w użytkowaniu
+                pozostają proste, eleganckie i skalowalne. Tam, gdzie inni widzą bariery, ja widzę przestrzeń do
+                wdrażania ambitnych koncepcji, które z łatwością zamieniam w czysty, optymalny kod.
+            </p>
+            <div class="bio-stats">
+                <span>Lokalizacja: <strong>Silesia, PL</strong></span>
+                <span>Status: <strong>Otwarty na współpracę</strong></span>
             </div>
         </div>
     </div>
+</div>
 
-    <h2 class="section-title">> MAPA SYSTEMU (MODUŁY)</h2>
-    <div class="nav-hub-grid">
+<h2 class="section-title">> MAPA SYSTEMU (MODUŁY)</h2>
+<div class="nav-hub-grid">
 
-        <a href="{{ url_for('projects') }}" class="project-card nav-card">
-            <div class="nav-icon">[ BAZA ]</div>
-            <h3>BAZA DANYCH: PROJEKTY</h3>
-            <p>Kompletny rejestr moich aplikacji. Znajdziesz tu specyfikacje techniczne, stosy technologiczne oraz linki do wersji LIVE.</p>
-            <span class="status-badge">DOSTĘPNE</span>
-        </a>
+    <a href="{{ url_for('projects') }}" class="project-card nav-card">
+        <div class="nav-icon">[ BAZA ]</div>
+        <h3>BAZA DANYCH: PROJEKTY</h3>
+        <p>Kompletny rejestr moich aplikacji. Znajdziesz tu specyfikacje techniczne, stosy technologiczne oraz linki do
+            wersji LIVE.</p>
+        <span class="status-badge">DOSTĘPNE</span>
+    </a>
 
-        <a href="{{ url_for('lab') }}" class="project-card nav-card">
-            <div class="nav-icon">[ LAB ]</div>
-            <h3>LABORATORIUM: PLANY</h3>
-            <p>Strefa eksperymentalna R&D. Tutaj przechowuję prototypy, szkice koncepcyjne i projekty będące w fazie rozwoju.</p>
-            <span class="status-badge blink">W BUDOWIE</span>
-        </a>
+    <a href="{{ url_for('lab') }}" class="project-card nav-card">
+        <div class="nav-icon">[ LAB ]</div>
+        <h3>LABORATORIUM: PLANY</h3>
+        <p>Strefa eksperymentalna R&D. Tutaj przechowuję prototypy, szkice koncepcyjne i projekty będące w fazie
+            rozwoju.</p>
+        <span class="status-badge blink">W BUDOWIE</span>
+    </a>
 
-        <a href="{{ url_for('kontakt') }}" class="project-card nav-card">
-            <div class="nav-icon">[ COM ]</div>
-            <h3>ŁĄCZE KOMUNIKACYJNE</h3>
-            <p>Kanały kontaktu ze mną. Pobieranie CV, linki do GitHub i LinkedIn oraz formularz e-mail.</p>
-            <span class="status-badge">ONLINE</span>
-        </a>
-    </div>
+    <a href="{{ url_for('kontakt') }}" class="project-card nav-card">
+        <div class="nav-icon">[ COM ]</div>
+        <h3>ŁĄCZE KOMUNIKACYJNE</h3>
+        <p>Kanały kontaktu ze mną. Pobieranie CV, linki do GitHub i LinkedIn oraz formularz e-mail.</p>
+        <span class="status-badge">ONLINE</span>
+    </a>
+</div>
 
-    <h2 class="section-title" style="margin-top: 50px;">> LOGI SYSTEMOWE (BLOG)</h2>
-    <div class="system-logs">
+<h2 class="section-title" style="margin-top: 50px;">> LOGI SYSTEMOWE (BLOG)</h2>
+<div class="system-logs">
 
-        <article class="project-card log-entry">
-            <div class="log-header">
-                <span class="log-date">2023-10-28 [14:45]</span>
-                <h3 class="log-title">Refaktoryzacja Modułu Graficznego</h3>
+    <article class="project-card log-entry">
+        <div class="log-header">
+            <span class="log-date">2023-10-28 [14:45]</span>
+            <h3 class="log-title">Refaktoryzacja Modułu Graficznego</h3>
+        </div>
+        <div class="log-content terminal-style">
+            <div class="log-intro">
+                <span class="cmd-line">> init graphics_refactor --dynamic-ui</span>
+                <p>Zrezygnowałem ze statycznych zasobów graficznych na rzecz dynamicznego UI. Całość opiera się na
+                    niskopoziomowych operacjach na <strong>HTML5 Canvas</strong>. Każda animacja jest generowana w
+                    czasie rzeczywistym przez dedykowane silniki skryptowe.</p>
             </div>
-            <div class="log-content">
-                <p>
-                    Ostatnio pracowałem nad optymalizacją canvasa w tle strony. Zauważyłem, że przy dużej liczbie cząsteczek (powyżej 500) FPS spadał na urządzeniach mobilnych.
-                    Zastosowałem technikę <em>Spatial Hashing</em>, aby przyspieszyć wykrywanie kolizji. Wyniki są obiecujące – wzrost wydajności o około 40%.
-                </p>
-                <p>W planach mam dodanie interakcji z kursorem myszy, która będzie "odpychać" linie kodu.</p>
-            </div>
-        </article>
 
-        <article class="project-card log-entry">
-            <div class="log-header">
-                <span class="log-date">2023-10-15 [09:00]</span>
-                <h3 class="log-title">Start Nowego Projektu: EduAlgo</h3>
-            </div>
-            <div class="log-content">
-                <p>
-                    Rozpoczynam pracę nad platformą edukacyjną wizualizującą algorytmy sortowania. Chcę użyć React Flow do rysowania grafów w czasie rzeczywistym.
-                    Kluczowym wyzwaniem będzie synchronizacja stanu algorytmu (Backend w Pythonie) z animacją na Frontendzie.
-                </p>
-            </div>
-        </article>
+            <div class="algorithm-list">
+                <h3>[ ZAIMPLEMENTOWANE ALGORYTMY ]</h3>
 
-    </div>
+                <div class="algo-item">
+                    <div class="algo-header">
+                        <span class="algo-icon">🌿</span>
+                        <span class="highlight">L-System / Bio-Growth</span>
+                        <span class="project-tag">(Kwiatownik)</span>
+                    </div>
+                    <p>Symulacja wzrostu organicznego. Implementacja fototropizmu i grawitacji. Parametryczna kontrola
+                        segmentów. Dynamiczne renderowanie liści z obsługą inercji podczas scrollowania.</p>
+                </div>
 
-    <style>
+                <div class="algo-item">
+                    <div class="algo-header">
+                        <span class="algo-icon">🏙️</span>
+                        <span class="highlight">Procedural City</span>
+                        <span class="project-tag">(GeoCommunity)</span>
+                    </div>
+                    <p>Generator panoramy miejskiej 2D. Algorytm losuje typy dachów i iglic w stylu blueprint. Budynki
+                        posiadają zdefiniowane systemy kolizji z sąsiednimi elementami DOM.</p>
+                </div>
+
+                <div class="algo-item">
+                    <div class="algo-header">
+                        <span class="algo-icon">⚡</span>
+                        <span class="highlight">Vector Pathfinding</span>
+                        <span class="project-tag">(PCB)</span>
+                    </div>
+                    <p>Inteligentne ścieżki obwodów drukowanych. Silnik wykrywa przeszkody (tekst, przyciski) i oblicza
+                        optymalne trasy omijania. Implementacja propagacji impulsów świetlnych.</p>
+                </div>
+            </div>
+
+            <div class="log-footer">
+                <span class="status-blink">_</span>
+                <p>W planach: utworzenie metodologicznego skryptu w którym parametry można zmieniać dynamicznie i w czasie rzeczywistym sprawdzić jaki mają wpływ na całą strone.</p>
+            </div>
+        </div>
+    </article>
+
+    <article class="project-card log-entry">
+        <div class="log-header">
+            <span class="log-date">2026-01-05 [09:00]</span>
+            <h3 class="log-title">Fabularne ulepszenie do Projektu: EduAlgo</h3>
+        </div>
+        <div class="log-content">
+            <p>
+                „Stworzyłem nowatorski system edukacyjny, który przekłada skomplikowane algorytmy niskopoziomowe na
+                zrozumiałe narracje wizualne. Udało mi się połączyć ścisłą logikę instrukcji procesora z systemem
+                fabularnych przewodników krok-po-kroku, co eliminuje barierę wejścia w naukę zarządzania pamięcią.
+                System obsługuje ponad 20 zaawansowanych algorytmów, oferując użytkownikom unikalną możliwość obserwacji
+                zmian adresacji pamięci i relacji między obiektami w czasie rzeczywistym.”
+            </p>
+        </div>
+    </article>
+
+</div>
+
+<style>
         .hero-section {
             text-align: center;
             margin-bottom: 60px;
@@ -251,5 +301,6 @@
         z-index: 6;
     }
 
-    </style>
+
+</style>
 {% endblock %}
