@@ -2,19 +2,25 @@
   {
     "id": "PL",
     "lang": "Polski",
-    "filename": "Jan_Kowalski_CV_PL.pdf",
-    "description": "Standardowy protokół komunikacyjny. Wersja pełna."
+    "filename": "CV_LASOTA_MICHAL_p.pdf",
+    "description": "Skrócona specyfikacja zawodowa (Executive Summary)."
+  },
+  {
+    "id": "PL",
+    "lang": "Polski",
+    "filename": "CV_LASOTA_MICHAL_r.pdf",
+    "description": "Pełny profil inżynierski i badawczy (R&D)."
   },
   {
     "id": "EN",
     "lang": "English",
-    "filename": "Jan_Kowalski_CV_EN.pdf",
-    "description": "International protocol. Full stack specification."
+    "filename": "CV_LASOTA_MICHAL_eng.pdf",
+    "description": "Comprehensive Software & AI Engineering Specification."
   },
   {
-    "id": "ATS",
-    "lang": "ATS Optimized",
-    "filename": "Jan_Kowalski_CV_ATS.pdf",
-    "description": "Wersja uproszczona, zoptymalizowana pod skanery systemowe."
+    "id": "CZ",
+    "lang": "Čeština",
+    "filename": "CV_LASOTA_MICHAL_cz.pdf",
+    "description": "Komplexní inženýrská specifikace (Software & R&D)."
   }
 ]
