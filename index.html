@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strefa Zero | Portfolio</title>
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- STYLE Z INDEX.HTML --- */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title {
+            color: var(--neon-cyan);
+            border-bottom: 1px dashed rgba(0, 243, 255, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-top: 80px; /* Dodany margines dla oddzielenia sekcji */
+        }
+        .bio-card {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 30px;
+            border-left: 4px solid var(--neon-cyan);
+        }
+        .bio-card h3 {
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+        .bio-content p {
+            line-height: 1.6;
+            font-size: 1.05rem;
+            color: #ddd;
+        }
+        .highlight { color: #fff; font-weight: bold; }
+        .bio-stats {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: #888;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .nav-hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .nav-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-top: 40px;
+        }
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
+            border-color: var(--neon-cyan);
+        }
+        .nav-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: rgba(0, 243, 255, 0.5);
+        }
+        .nav-card h3 {
+            color: var(--neon-cyan);
+            margin-bottom: 10px;
+        }
+        .nav-card p {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+        .status-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            border: 1px solid #444;
+            padding: 3px 8px;
+            border-radius: 2px;
+            color: #666;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .nav-card:hover .status-badge {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+        .blink { animation: blink 2s infinite; }
+        .system-logs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .log-entry {
+            border-left: 2px solid #333;
+            transition: border-color 0.3s;
+        }
+        .log-entry:hover {
+            border-left-color: var(--neon-cyan);
+        }
+        .log-header {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .log-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #666;
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .log-title {
+            margin: 0;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+        .log-content p {
+            margin-bottom: 10px;
+            color: #bbb;
+        }
+        .log-content p:last-child { margin-bottom: 0; }
+
+        @media (max-width: 600px) {
+            .bio-stats { flex-direction: column; gap: 5px; }
+        }
+
+        .hero-section, .section-header {
+            text-align: center;
+            width: 100%;
+            position: relative;
+            pointer-events: none;
+        }
+
+        h1.glitch, h2.section-title, .bio-card h3 {
+            display: inline-block;
+            position: relative;
+            pointer-events: auto;
+            background: #050510;
+            padding: 10px 20px;
+            border-radius: 4px;
+            z-index: 10;
+        }
+        .bio-card {
+            pointer-events: auto !important;
+            position: relative;
+            z-index: 5;
+            background: #050510;
+        }
+        .bio-content {
+            position: relative;
+            z-index: 6;
+        }
+
+        /* --- STYLE Z PROJECTS.HTML --- */
+        .action-btn.btn-cyan {
+            border-color: var(--neon-cyan, #00f3ff);
+            color: var(--neon-cyan, #00f3ff);
+            background: transparent;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .action-btn.btn-cyan:hover {
+            background-color: rgba(0, 243, 255, 0.15);
+            color: #ffffff;
+            border-color: var(--neon-cyan, #00f3ff);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.5), inset 0 0 10px rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
+        }
+        .action-btn.btn-cyan:active {
+            transform: translateY(0);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+        }
+
+        /* --- STYLE Z KONTAKT.HTML --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .contact-card {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .contact-card h3 {
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        .highlight-card {
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+        }
+
+        /* Style dla Modala CV */
+        .modal-backdrop {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-backdrop.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .modal-window {
+            background: #0a0a0a;
+            border: 1px solid var(--neon-cyan);
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal-backdrop.active .modal-window {
+            transform: scale(1);
+        }
+        .cv-options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .cv-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .cv-btn:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 243, 255, 0.1);
+            padding-left: 25px;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ff4444;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .action-btn.btn-gold {
+            border-color: #ffd700;
+            color: #ffd700;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        .action-btn.btn-gold:hover {
+            background-color: rgba(255, 215, 0, 0.15) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            text-shadow: 0 0 8px #ffd700;
+            border-color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#home">[ Start ]</a>
+            <a href="#projects">[ Projekty ]</a>
+            <a href="#laboratory">[ Plany ]</a>
+            <a href="#contact">[ Kontakt ]</a>
+        </div>
+    </nav>
+
+    <main>
+
+        <section id="home">
+            <div class="hero-section">
+                <h1 class="glitch" data-text="> WITAJ W SYSTEMIE">
+                    > WITAJ W SYSTEMIE
+                </h1>
+
+                <div class="project-card bio-card">
+                    <h3>[ O MNIE: ]</h3>
+                    <div class="bio-content">
+                        <p>
+                            Jestem inżynierem oprogramowania specjalizującym się w <span
+                                class="highlight">architekturze backendowej</span> i <span
+                                class="highlight">optymalizacji systemów</span>. Moja praca zaczyna się tam, gdzie kończą się
+                            standardowe schematy – łączę technologiczną precyzję z dużą dawką kreatywności, co pozwala mi z
+                            naturalną lekkością przekuwać nawet najtrudniejsze i najbardziej nieszablonowe pomysły w wysokowydajną
+                            rzeczywistość. Projektuję rozwiązania, które pod maską kryją złożone mechanizmy, ale w użytkowaniu
+                            pozostają proste, eleganckie i skalowalne. Tam, gdzie inni widzą bariery, ja widzę przestrzeń do
+                            wdrażania ambitnych koncepcji, które z łatwością zamieniam w czysty, optymalny kod.
+                        </p>
+                        <div class="bio-stats">
+                            <span>Lokalizacja: <strong>Silesia, PL</strong></span>
+                            <span>Status: <strong>Otwarty na współpracę</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">> MAPA SYSTEMU (MODUŁY)</h2>
+            <div class="nav-hub-grid">
+                <a href="#projects" class="project-card nav-card">
+                    <div class="nav-icon">[ BAZA ]</div>
+                    <h3>BAZA DANYCH: PROJEKTY</h3>
+                    <p>Kompletny rejestr moich aplikacji. Znajdziesz tu specyfikacje techniczne, stosy technologiczne oraz linki do
+                        wersji LIVE.</p>
+                    <span class="status-badge">DOSTĘPNE</span>
+                </a>
+
+                <a href="#laboratory" class="project-card nav-card">
+                    <div class="nav-icon">[ LAB ]</div>
+                    <h3>LABORATORIUM: PLANY</h3>
+                    <p>Strefa eksperymentalna R&D. Tutaj przechowuję prototypy, szkice koncepcyjne i projekty będące w fazie
+                        rozwoju.</p>
+                    <span class="status-badge blink">W BUDOWIE</span>
+                </a>
+
+                <a href="#contact" class="project-card nav-card">
+                    <div class="nav-icon">[ COM ]</div>
+                    <h3>ŁĄCZE KOMUNIKACYJNE</h3>
+                    <p>Kanały kontaktu ze mną. Pobieranie CV, linki do GitHub i LinkedIn oraz formularz e-mail.</p>
+                    <span class="status-badge">ONLINE</span>
+                </a>
+            </div>
+
+            <h2 class="section-title">> LOGI SYSTEMOWE (BLOG)</h2>
+            <div class="system-logs">
+                <article class="project-card log-entry">
+                    <div class="log-header">
+                        <span class="log-date">2023-10-28 [14:45]</span>
+                        <h3 class="log-title">Refaktoryzacja Modułu Graficznego</h3>
+                    </div>
+                    <div class="log-content terminal-style">
+                        <div class="log-intro">
+                            <span class="cmd-line">> init graphics_refactor --dynamic-ui</span>
+                            <p>Zrezygnowałem ze statycznych zasobów graficznych na rzecz dynamicznego UI. Całość opiera się na
+                                niskopoziomowych operacjach na <strong>HTML5 Canvas</strong>. Każda animacja jest generowana w
+                                czasie rzeczywistym przez dedykowane silniki skryptowe.</p>
+                        </div>
+
+                        <div class="algorithm-list">
+                            <h3>[ ZAIMPLEMENTOWANE ALGORYTMY ]</h3>
+                            <div class="algo-item">
+                                <div class="algo-header">
+                                    <span class="algo-icon">🌿</span>
+                                    <span class="highlight">L-System / Bio-Growth</span>
+                                    <span class="project-tag">(Kwiatownik)</span>
+                                </div>
+                                <p>Symulacja wzrostu organicznego. Implementacja fototropizmu i grawitacji. Parametryczna kontrola
+                                    segmentów. Dynamiczne renderowanie liści z obsługą inercji podczas scrollowania.</p>
+                            </div>
+                            <div class="algo-item">
+                                <div class="algo-header">
+                                    <span class="algo-icon">🏙️</span>
+                                    <span class="highlight">Procedural City</span>
+                                    <span class="project-tag">(GeoCommunity)</span>
+                                </div>
+                                <p>Generator panoramy miejskiej 2D. Algorytm losuje typy dachów i iglic w stylu blueprint. Budynki
+                                    posiadają zdefiniowane systemy kolizji z sąsiednimi elementami DOM.</p>
+                            </div>
+                            <div class="algo-item">
+                                <div class="algo-header">
+                                    <span class="algo-icon">⚡</span>
+                                    <span class="highlight">Vector Pathfinding</span>
+                                    <span class="project-tag">(PCB)</span>
+                                </div>
+                                <p>Inteligentne ścieżki obwodów drukowanych. Silnik wykrywa przeszkody (tekst, przyciski) i oblicza
+                                    optymalne trasy omijania. Implementacja propagacji impulsów świetlnych.</p>
+                            </div>
+                        </div>
+
+                        <div class="log-footer">
+                            <span class="status-blink">_</span>
+                            <p>W planach: utworzenie metodologicznego skryptu w którym parametry można zmieniać dynamicznie i w czasie rzeczywistym sprawdzić jaki mają wpływ na całą strone.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card log-entry">
+                    <div class="log-header">
+                        <span class="log-date">2026-01-05 [09:00]</span>
+                        <h3 class="log-title">Fabularne ulepszenie do Projektu: EduAlgo</h3>
+                    </div>
+                    <div class="log-content">
+                        <p>
+                            „Stworzyłem nowatorski system edukacyjny, który przekłada skomplikowane algorytmy niskopoziomowe na
+                            zrozumiałe narracje wizualne. Udało mi się połączyć ścisłą logikę instrukcji procesora z systemem
+                            fabularnych przewodników krok-po-kroku, co eliminuje barierę wejścia w naukę zarządzania pamięcią.
+                            System obsługuje ponad 20 zaawansowanych algorytmów, oferując użytkownikom unikalną możliwość obserwacji
+                            zmian adresacji pamięci i relacji między obiektami w czasie rzeczywistym.”
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects" style="padding-top: 100px;">
+            <header class="section-header">
+                <h1 class="glitch" data-text="> Baza Danych: Zrealizowane Projekty">
+                    > Baza Danych: Zrealizowane Projekty
+                </h1>
+                <p>Wykaz głównych modułów oprogramowania i aplikacji mojego autorstwa.</p>
+            </header>
+
+            <div class="projects-grid" id="projects-container">
+                <div class="loading-state" style="color: var(--neon-cyan); text-align: center; padding: 20px;">
+                    [ Pobieranie danych z bazy statycznej... ]
+                </div>
+            </div>
+        </section>
+
+        <section id="laboratory" style="padding-top: 100px;">
+            <header class="section-header">
+                <h1 class="glitch" data-text="> Laboratorium Badawcze">
+                    > Laboratorium Badawcze
+                </h1>
+                <p>Projekty w fazie R&D (Research & Development). Koncepcje i prototypy.</p>
+            </header>
+
+            <div class="lab-container" id="labs-container">
+                <div class="loading-state" style="color: var(--neon-cyan); text-align: center; padding: 20px;">
+                    [ Skanowanie prototypów... ]
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" style="padding-top: 100px; padding-bottom: 100px;">
+            <header class="section-header">
+                <h1 class="glitch" data-text="> Nawiązywanie Połączenia">
+                    > Nawiązywanie Połączenia
+                </h1>
+                <p>Status: Oczekiwanie na sygnał. Wybierz kanał komunikacji.</p>
+            </header>
+
+            <div class="contact-container">
+                <div class="contact-grid">
+                    <div class="project-card contact-card">
+                        <h3>[ GITHUB ]</h3>
+                        <p>Pełny kod źródłowy moich projektów.</p>
+                        <a href="https://github.com/" target="_blank" class="action-btn">>> Eksploruj Repozytoria</a>
+                    </div>
+
+                    <div class="project-card contact-card">
+                        <h3>[ LINKEDIN ]</h3>
+                        <p>Profil zawodowy i historia edukacji.</p>
+                        <a href="https://linkedin.com/" target="_blank" class="action-btn">>> Nawiąż Kontakt</a>
+                    </div>
+
+                    <div class="project-card contact-card highlight-card">
+                        <h3>[ CURRICULUM VITAE ]</h3>
+                        <p>Dostępne wielojęzykowe protokoły danych.</p>
+                        <button id="open-cv-modal" class="action-btn btn-gold">
+                            >> INICJUJ POBIERANIE (PDF)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="terminal-footer" style="margin-top: 50px; text-align: center;">
+                    <p style="color: var(--neon-cyan); font-size: 1.2em;">
+                        E-MAIL: <span class="email-obstacle" style="color: #fff; display: inline-block; background: #050510; padding: 5px 10px; border-radius: 4px; position: relative; z-index: 10;">michauasota@gmail.com</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="modal-container"></div>
+    <canvas id="circuitCanvas"></canvas>
+
+    <script src="static/js/main.js"></script>
+    <script src="static/js/flower.js"></script>
+    <script src="static/js/city.js"></script>
+    <script src="static/js/imageViewer.js"></script>
+
+</body>
+</html>
