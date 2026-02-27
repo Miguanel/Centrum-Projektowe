@@ -90,11 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="modal-window project-card">
                         <button class="close-modal" id="close-cv">×</button>
                         <h2 style="color: var(--neon-cyan); border-bottom: 1px dashed #333; padding-bottom: 15px;">
-                            >> WYBIERZ PROTOKÓŁ
+                            >> WYBIERZ CV
                         </h2>
                         <div class="cv-options-list">
                             ${cvData.map(cv => `
-                                <a href="static/docs/${cv.filename}" download class="cv-btn action-btn">
+                                <a href="static/docs/${cv.filename}" target="_blank" rel="noopener noreferrer" download class="cv-btn action-btn">
                                     <span><strong>[${cv.id}]</strong> ${cv.lang}</span>
                                     <span style="font-size: 0.8em; color: #aaa;">${cv.description}</span>
                                 </a>
