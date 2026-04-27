@@ -1,10 +1,19 @@
 [
   {
     "id": "01",
-    "title": "Symulator Struktur Danych (EduAlgo)",
-    "tags": ["Praca Dyplomowa", "Algorytmy", "React", "Python"],
+    "title": "EduAlgo",
+    "tags": [
+      "Praca Dyplomowa",
+      "Algorytmy",
+      "React"
+    ],
     "description": "Interaktywna platforma edukacyjna wizualizująca działanie struktur danych oraz algorytmów w czasie rzeczywistym. Pomaga zrozumieć wskaźniki poprzez animacje.",
-    "tech": ["React Flow", "FastAPI", "TypeScript", "Vite"],
+    "tech": [
+      "React Flow",
+      "FastAPI",
+      "TypeScript",
+      "Vite"
+    ],
     "linkText": "URUCHOM SYMULATOR (LIVE)",
     "linkUrl": "https://edualgo-app.onrender.com",
     "details": {
@@ -24,10 +33,16 @@
   },
   {
     "id": "02",
-    "title": "Mikro-Wojny: Strategia Biologiczna",
-    "tags": ["GameDev", "Vanilla JS", "Symulacja"],
+    "title": "Shalka Petryego",
+    "tags": [
+      "GameDev",
+      "Vanilla JS",
+      "Symulacja"
+    ],
     "description": "Karciana gra RTS w szalce Petriego. Projektujesz własne mikroorganizmy, modyfikujesz ich kod genetyczny i walczysz z zaawansowanym algorytmem na arenie.",
-    "tech": ["HTML5 Canvas", "Vanilla JS", "CSS3"],
+    "tech": [
+      "Vanilla JS"
+    ],
     "linkText": "URUCHOM GRĘ (LIVE)",
     "linkUrl": "https://bakterie.onrender.com",
     "details": {
@@ -44,17 +59,24 @@
       "frontend": "HTML5 Canvas (Rendering), Vanilla JavaScript (ES6+ Modules), CSS3 (Glassmorphism UI, Animations).",
       "other": "Zero-dependency (Brak zewnętrznych bibliotek i frameworków).",
       "screenshots": [
-      "/static/images/bakterie-arena-diagram-AI.png"
+        "/static/images/bakterie-arena-diagram-AI.png"
       ]
     }
   },
   {
     "id": "03",
     "title": "Kwiatownik",
-    "tags": ["Ziołolecznictwo", "Permakultura", "Python"],
+    "tags": [
+      "Encyklopedia",
+      "Permakultura"
+    ],
     "description": "Cyfrowy zielnik, encyklopedia kulinarno - ogrodnicza nt roślin rosnących wokoło. aktualnie prawie 700 przepisów medycznych i kulinarnych. Generator nalewek i mieszanek uwzględniając poszczególne części roślin oraz ostrzeżenia",
-    "tech": ["Flask", "JSON Data Store", "Jinja2", "Render"],
-    "linkText": "OTWÓRZ ARCHIWUM (LIVE)",
+    "tech": [
+      "Flask",
+      "SQL-JSON",
+      "Jinja2"
+    ],
+    "linkText": "PRZEJDŹ NA STRONE (LIVE)",
     "linkUrl": "https://kwiatownik.onrender.com",
     "details": {
       "fullDescription": "Kwiatownik to interaktywna aplikacja webowa będąca nowoczesnym kompendium wiedzy o polskiej florze. Projekt łączy mądrość tradycyjnego ziołolecznictwa, precyzję współczesnej botaniki oraz systemowe podejście permakultury. To nie jest zwykła encyklopedia – to narzędzie dla świadomych ogrodników i zielarzy, pomagające w bezpiecznej identyfikacji roślin, planowaniu gildii ogrodowych oraz wykorzystaniu surowców w domowej apteczce.",
@@ -75,10 +97,17 @@
   },
   {
     "id": "04",
-    "title": "Bakteriofagocyty: Ekosystem (.io)",
-    "tags": ["Multiplayer", "Socket.io", "Node.js"],
+    "title": "Ekosystem.io",
+    "tags": [
+      "Multiplayer",
+      "Socket.io"
+    ],
     "description": "Dynamiczna gra multiplayer osadzona w mikroskopijnym świecie. Gracze projektują własne organizmy, walczą o przetrwanie w nieskończonym, tętniącym życiem środowisku.",
-    "tech": ["Node.js", "Socket.io", "HTML5 Canvas"],
+    "tech": [
+      "Node.js",
+      "Socket.io",
+      "HTML5 Canvas"
+    ],
     "linkText": "POŁĄCZ Z SERWEREM (LIVE)",
     "linkUrl": "https://arenabacterii.onrender.com",
     "details": {
@@ -99,12 +128,19 @@
   },
   {
     "id": "05",
-    "title": "Memikoza - Agregator Treści",
-    "tags": ["Web Scraping", "Automatyzacja", "Python"],
+    "title": "Memikoza",
+    "tags": [
+      "Web Scraping",
+      "Automatyzacja"
+    ],
     "description": "Automat skanujący sieć co 30 minut w poszukiwaniu nowych memów. Agreguje treści z wielu domen, oddzielając obrazy od wideo i dbając o płynne odtwarzanie multimediów.",
-    "tech": ["Python (BeautifulSoup)", "Harmonogram Zadań (Cron)", "HTML5 Video"],
-    "linkText": "ZOBACZ SZCZEGÓŁY",
-    "linkUrl": "https://memikoza.onrender.com",
+    "tech": [
+      "Python (BeautifulSoup)",
+      "Harmonogram Zadań (Cron)",
+      "HTML5 Video"
+    ],
+    "linkText": "WEJDŹ NA STRONE",
+    "linkUrl": "https://mem-i-koza.onrender.com",
     "details": {
       "fullDescription": "Memikoza to aplikacja typu 'Set & Forget' – w pełni zautomatyzowany agregator treści humorystycznych. System eliminuje konieczność ręcznego odwiedzania wielu serwisów, centralizując content w jednym miejscu. Głównym elementem backendu jest bot, który cyklicznie wykonuje żądania HTTP do zdefiniowanych domen, parsuje ich strukturę DOM i ekstrahuje bezpośrednie linki do zasobów.",
       "features": [
@@ -122,9 +158,17 @@
   {
     "id": "06",
     "title": "GeoCommunity Funding Platform",
-    "tags": ["GIS", "Crowdfunding", "Python"],
+    "tags": [
+      "GIS",
+      "Crowdfunding"
+    ],
     "description": "Interaktywna platforma łącząca system informacji przestrzennej z mechanizmem zbiórek. Umożliwia mieszkańcom zgłaszanie i finansowanie lokalnych inicjatyw bezpośrednio na mapie. \n- PROJEKT WSTRZYMANY -",
-    "tech": ["FastAPI", "PostgreSQL/PostGIS", "Leaflet.js", "Docker"],
+    "tech": [
+      "FastAPI",
+      "PostgreSQL/PostGIS",
+      "Leaflet.js",
+      "Docker"
+    ],
     "linkText": "ZOBACZ SZCZEGÓŁY",
     "linkUrl": "#",
     "details": {
@@ -144,10 +188,19 @@
   },
   {
     "id": "07",
-    "title": "Mobile Time Manager (Chronos)",
-    "tags": ["Mobile", "Android", "Java/Kotlin", "Produktywność"],
+    "title": "Chronos",
+    "tags": [
+      "Mobile",
+      "Android",
+      "Java/Kotlin"
+    ],
     "description": "System mobilny do zarządzania czasem i priorytetyzacji zadań. Umożliwia tworzenie powiadomień z obrazami pobranymi lub nagranymi. ",
-    "tech": ["MVVM", "Room Persistence", "WorkManager", "Material Design"],
+    "tech": [
+      "MVVM",
+      "Room Persistence",
+      "WorkManager",
+      "Material Design"
+    ],
     "linkText": "ZOBACZ REPOZYTORIUM",
     "linkUrl": "",
     "details": {
@@ -164,12 +217,147 @@
       "frontend": "Android XML Layouts (Material UI), Activity/Fragment API, dynamiczne kontenery ScrollView.",
       "other": "Walidacja formularzy, Obsługa błędów wejścia/wyjścia, System natywnych notyfikacji.",
       "screenshots": [
-      "/static/images/todolist-1.png",
-      "/static/images/todolist-2.png",
-      "/static/images/todolist-3.png",
-      "/static/images/todolist-4.png",
-      "/static/images/todolist-5.png"
-    ]
+        "/static/images/todolist-1.png",
+        "/static/images/todolist-2.png",
+        "/static/images/todolist-3.png",
+        "/static/images/todolist-4.png",
+        "/static/images/todolist-5.png"
+      ]
     }
+  },
+  {
+    "id": "08",
+    "title": "ExploSumator",
+    "tags": [
+      "Narzędzie Systemowe",
+      "Desktop GUI"
+    ],
+    "description": "Zaawansowana aplikacja desktopowa do jednoczesnego przeglądania struktury plików i ekstrakcji treści tekstowej z wielu źródeł w czasie rzeczywistym.",
+    "tech": [
+      "Python",
+      "Tkinter",
+      "OS / Pathlib"
+    ],
+    "linkText": "ZOBACZ KOD (GITHUB)",
+    "downloadUrl": "static/downloads/EksploSumator.zip",
+    "details": {
+      "fullDescription": "ExploSumator to wydajne narzędzie narzędziowe stworzone w celu przyspieszenia pracy z wieloma plikami tekstowymi jednocześnie (np. przy analizie kodu, przygotowywaniu danych dla LLM czy dokumentacji). Głównym wyzwaniem projektowym było stworzenie responsywnego interfejsu, który poradzi sobie z dużymi strukturami folderów oraz zapewni spójność danych poprzez mechanizm automatycznego monitorowania zmian na dysku bez blokowania głównego wątku aplikacji.",
+      "features": [
+        "Dynamiczny Eksplorator Plików: Mechanizm 'lazy loading' pozwalający na błyskawiczne przeglądanie głębokich struktur katalogów i dysków systemowych.",
+        "Tryb Multiselekcji (Batch Extraction): Autorski system zaznaczania plików, który agreguje treść z wielu formatów (.py, .txt, .json, .html, .css) w jedno interaktywne okno podglądu.",
+        "Real-time File Polling: Inteligentny system monitorowania plików w tle, który automatycznie odświeża podgląd tekstowy po wykryciu zmian na dysku, zachowując pozycję przewijania użytkownika.",
+        "System Powiadomień 'Toast': Nienachalny mechanizm informowania o błędach (np. próba otwarcia pliku binarnego) za pomocą animowanych dymków, które nie przerywają pracy.",
+        "Inteligentna Nawigacja: Pasek adresu z walidacją ścieżek (limit 260 znaków) oraz systemem szybkiego skoku do folderu nadrzędnego lub widoku głównego (Home).",
+        "Dynamiczna Lista Wybranych: Zarządzanie aktywnymi plikami z poziomu dedykowanego panelu z wizualnymi wskaźnikami statusu załadowania (Success/Error Icons)."
+      ],
+      "backend": "Python (os, pathlib) – operacje na systemie plików, asynchroniczne sprawdzanie czasu modyfikacji (mtime).",
+      "database": "Brak (Aplikacja bezstanowa operująca bezpośrednio na strukturze plików systemowych).",
+      "frontend": "Tkinter GUI – autorska architektura komponentów (Canvas z kółkiem myszy, Custom Toasts, Treeview).",
+      "other": "PyInstaller (dystrybucja do .exe), Walidacja wejścia."
+    }
+  },
+  {
+    "id": "09",
+    "title": "OmniBlocker JS",
+    "hasGenerator": "OmniAdBlocker",
+    "tags": [
+      "JavaScript",
+      "DOM Manipulation",
+      "AdBlock Bypass",
+      "Userscript"
+    ],
+    "description": "Autorski skrypt działający w tle przeglądarki, automatyzujący pomijanie reklam na YouTube oraz neutralizujący inwazyjne pop-upy, paywalle i złośliwe clickjackery na stronach WWW.",
+    "tech": [
+      "JavaScript (ES6)",
+      "DOM API",
+      "CSS Object Model"
+    ],
+
+    "details": {
+      "fullDescription": "Projekt to wydajny skrypt (userscript) zaprojektowany do walki z agresywnymi reklamami i nowoczesnymi mechanizmami anti-adblock. Głównym wyzwaniem było stworzenie narzędzia odpornego na detekcję przez duże platformy (takie jak YouTube czy Onet). Zamiast polegać na tradycyjnych filtrach sieciowych, skrypt aktywnie modyfikuje strukturę DOM odwiedzanej strony w czasie rzeczywistym. Wykorzystuje zaawansowane techniki, takie jak off-screen rendering dla maskowanych banerów, bezpośrednia manipulacja API odtwarzacza wideo (HTML5 Video) oraz generowanie syntetycznych zdarzeń systemowych symulujących fizyczne interakcje użytkownika.",
+      "features": [
+        "YouTube Ad-Skipper & Auto-Resume: Błyskawiczne wykrywanie reklam wideo, wymuszanie 16-krotnego przyspieszenia (playbackRate), wyciszanie dźwięku oraz symulacja fizycznego kliknięcia myszką (MouseEvent) w przycisk 'Pomiń' w celu ominięcia zabezpieczeń nasłuchujących.",
+        "Clickjacker Neutralizer (VOD): Algorytm skanujący ukryte, podążające za kursorem złośliwe linki (np. na stronach typu Filman.cc) i obezwładniający je poprzez wymuszenie 'pointer-events: none' oraz miniaturyzację do 1px.",
+        "Stealth Ad Removal: Innowacyjne omijanie detektorów adblocka – zamiast usuwać elementy z drzewa DOM lub używać flagi 'display: none', skrypt przenosi kontenery reklamowe poza obszar renderowania (-10000px) i czyni je przezroczystymi.",
+        "Scroll Recovery System: Automatyczne przełamywanie tzw. 'scroll locków' narzucanych przez inwazyjne okna modalne, subskrypcje i paywalle poprzez siłowe nadpisywanie właściwości 'overflow' na tagach body i html.",
+        "Continuous Background Polling: Zoptymalizowana pętla działająca w tle (setInterval), która asynchronicznie skanuje i reaguje na nowe, dynamicznie doczytywane elementy (np. w aplikacjach SPA) co 500 milisekund bez blokowania głównego wątku."
+      ],
+      "backend": "Brak (Aplikacja Client-Side operująca wyłącznie w silniku JS przeglądarki użytkownika).",
+      "database": "Brak.",
+      "frontend": "Vanilla JavaScript (ES6) – bezpośrednia integracja z DOM API, precyzyjne selektory złośliwych klas/ID oraz zaawansowane nadpisywanie stylów CSS w locie (flaga !important).",
+      "other": "Możliwość uruchomienia bezpośrednio z konsoli deweloperskiej (DevTools) lub jako skrypt dla rozszerzeń typu Tampermonkey. Generowanie syntetycznych zdarzeń (KeyboardEvent/MouseEvent)."
+    }
+  },
+  {
+    "id": "10",
+    "title": "Muzart",
+    "tags": [
+      "Android",
+      "Kotlin",
+      "Jetpack Compose",
+      "Audio Processing",
+      "Sequencer"
+    ],
+    "description": "Innowacyjny, fraktalny looper i sekwencer muzyczny bazujący na strukturze zegarów. Umożliwia nagrywanie sampli z mikrofonu, odtwarzanie strumieniowe w czasie rzeczywistym z wielowarstwowym mikserem głośności oraz sprzętową wizualizację fal dźwiękowych.",
+    "tech": [
+      "Kotlin",
+      "Jetpack Compose",
+      "Coroutines",
+      "AudioTrack",
+      "Gson"
+    ],
+    "downloadUrl": "static/downloads/Muzart.zip",
+    "linkText": "REPOZYTORIUM PROJEKTU",
+    "linkUrl": "#",
+    "details": {
+      "fullDescription": "Muzart to zaawansowana aplikacja na system Android, służąca do tworzenia nieszablonowych kompozycji muzycznych za pomocą interfejsu opartego na połączonych ze sobą zegarach (grafach). Aplikacja pozwala na nagrywanie krótkich form dźwiękowych, dzielenie tarcz zegarów na polirytmiczne segmenty oraz dodawanie nieskończenie zagnieżdżonych podzegarów. Wyróżnia się napisanym od zera silnikiem audio, który w locie modyfikuje strumień PCM, oraz zaawansowanym wektorowym płótnem obsługującym dynamiczny, nieskończony zoom i automatyczne unikanie kolizji między elementami.",
+      "features": [
+        "Fraktalny Sekwencer (Drzewo Zegarów): Każdy zegar posiada własną siatkę rytmiczną i tempo odtwarzania zależne od kąta na tarczy rodzica.",
+        "Silnik Audio (Real-time DSP): Odtwarzacz wykorzystujący AudioTrack w trybie strumieniowym (MODE_STREAM) z wbudowanym manipulatorem próbek PCM dla płynnych przejść i mixu.",
+        "Zaawansowany Routing Głośności: System dziedziczenia głośności od węzłów głównych po ich dzieci, wraz z filtrowaniem i dedykowanymi presetami (VolumePresets).",
+        "Wizualizator FFT: Własny algorytm Fast Fourier Transform przekształcający dane z mikrofonu na wizualne dane o amplitudzie, basach, tonach średnich i wysokich rysowane na tarczy.",
+        "Analityczne Pakowanie Geometryczne: Algorytm UI dynamicznie przesuwający i skalujący tarcze (tworząc wielowarstwowe orbity), by zapobiec nakładaniu się zegarów przy dużym zagęszczeniu.",
+        "Nieskończone Płótno Wektorowe (Canvas): W pełni interaktywna mapa obsługująca gesty nawigacji, z wektorowymi konturami utrzymującymi stałą grubość (1-3px) niezależnie od powiększenia."
+      ],
+      "backend": "Kotlin Coroutines: asynchroniczne pętle (Dispatchers.IO) zarządzające cięciem i wysyłaniem porcji audio (chunk 50ms) do bufora, bez blokowania wątku UI.",
+      "database": "Local Storage (SharedPreferences + Gson): Baza NoSQL oparta o pliki JSON do natychmiastowego zapisywania pełnej struktury drzew i nagranych fal (WaveformPoints) do biblioteki lokalnej.",
+      "frontend": "Jetpack Compose: Czysty interfejs deklaratywny połączony z potężnym komponentem Canvas. Niestandardowa obsługa wskaźników dotyku (PointerInput) do sterowania suwakami głośności prosto z rysowanego płótna.",
+      "other": "Dynamiczne limity przybliżenia obliczane rekurencyjnie na podstawie aktualnej głębokości fraktala (maxDepth). Zarządzanie mikrofonem (AudioRecord)."
+    }
+  },
+  {
+  "id": "11",
+  "title": "WinTopper",
+  "tags": [
+    "Win32 API",
+    "Hooking",
+    "System Tray",
+    "UI Extension"
+  ],
+  "description": "Zaawansowane narzędzie do zarządzania priorytetami okien Windows. Rozszerza natywne menu systemowe (dostępne pod prawym przyciskiem myszy na belce tytułowej) o funkcję 'Always on Top', integrując się bezpośrednio z procesami systemowymi.",
+  "tech": [
+    "Python",
+    "pywin32 (win32gui, win32con)",
+    "keyboard",
+    "pystray",
+    "Threading"
+  ],
+  "downloadUrl": "static/downloads/WinTopper.zip",
+  "linkText": "DOKUMENTACJA API",
+  "linkUrl": "#",
+  "details": {
+    "fullDescription": "WinTopper to hybrydowe rozwiązanie łączące niskopoziomową manipulację interfejsem Windows z globalnymi hookami klawiatury. Aplikacja dynamicznie wykrywa zmianę aktywnego okna i wstrzykuje niestandardowe identyfikatory (Command IDs) do systemowego menu kontekstowego. Dzięki zastosowaniu wielowątkowości, program jednocześnie monitoruje stan skupienia systemu, obsługuje ikonę w zasobniku oraz nasłuchuje zdarzeń wejścia, zapewniając użytkownikowi trzy niezależne metody przypinania okien.",
+    "features": [
+      "Dynamiczna Iniekcja Menu (System Menu Extension): Automatyczne modyfikowanie struktury menu systemowego aktywnych okien poprzez funkcję AppendMenu z unikalnym ID zdarzenia.",
+      "Zasobnik Systemowy z Threadingiem: Implementacja interfejsu w tle, który pozwala na zarządzanie cyklem życia aplikacji bez blokowania pętli komunikatów Windows.",
+      "Globalne Skróty Klawiszowe (Bypass): Rezerwowa metoda aktywacji dla aplikacji o niestandardowej strukturze okien (np. Java Swing, Electron), które blokują zewnętrzne modyfikacje menu.",
+      "Inteligentny Monitor Procesów: Lekki mechanizm sprawdzający uchwyty okien (HWND) i zapobiegający duplikowaniu wpisów w menu przy wielokrotnym przełączaniu okien.",
+      "Wizualny Feedback w Konsoli: System logowania zdarzeń informujący o nadaniu flagi HWND_TOPMOST wraz z tytułem zmodyfikowanego okna."
+    ],
+    "backend": "Python Win32 Extensions: Wykorzystanie modułów win32gui do pobierania SystemMenu i zarządzania flagami EX_STYLE. Mechanizm oparty na flagach SWP_NOMOVE i SWP_NOSIZE dla zachowania integralności geometrii okna.",
+    "database": "Brak (Stateless architecture). Wszystkie flagi są przechowywane w strukturach danych menedżera okien systemu Windows (DWM).",
+    "frontend": "System UI & Tray: Interfejs zintegrowany z powłoką systemu Windows (Shell). Dynamicznie generowana ikona zasobnika przy użyciu biblioteki Pillow (Imaging Library).",
+    "other": "Obsługa wyjątków dla okien z uprawnieniami Administratora (UAC) oraz mechanizmy bezpiecznego zamykania procesów potomnych."
   }
+}
 ]

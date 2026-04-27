@@ -25,11 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
             initVisualEffects();
             initModalSystem();
             initProjectModalSystem(); // Inicjalizacja po załadowaniu danych
+            initAlgoModalSystem();
 
         } catch (error) {
             console.error("Critical System Error:", error);
         }
     }
+
+    // static/js/main.js
 
     function renderProjects(projects) {
         const container = document.getElementById('projects-container');
@@ -39,26 +42,203 @@ document.addEventListener('DOMContentLoaded', () => {
             <article class="project-card">
                 <div class="project-header">
                     <h2>[${p.id}] ${p.title}</h2>
-                    <span class="badge">${(p.tags || []).join(' / ')}</span>
+                    <div class="project-tags">
+                        ${(p.tags || []).map(t => `<span class="tag-badge">${t}</span>`).join('')}
+                    </div>
                 </div>
                 <div class="project-content">
                     <p>${p.description}</p>
                     <ul class="tech-stack">${(p.tech || []).map(t => `<li>${t}</li>`).join('')}</ul>
 
                     <div class="project-actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button class="action-btn btn-cyan open-project-btn" data-id="${p.id}" style="flex: 1;">
-                            >> SPECYFIKACJA
+                        <button class="action-btn btn-cyan open-project-btn" data-id="${p.id}" style="flex: 1 1 180px; white-space: nowrap;">
+                            >> SZCZEGÓŁY <<
                         </button>
 
+                        ${p.hasGenerator ? `
+                            <button class="action-btn btn-green btn-algo-gen"
+                                    data-id="${p.id}"
+                                    data-type="${p.hasGenerator}"
+                                    style="flex: 1 1 180px; white-space: nowrap;">
+                                [ Ω ] EDYTUJ ALGORYTM
+                            </button>
+                        ` : ''}
+
+                        ${p.downloadUrl ? `
+                            <a href="${p.downloadUrl}" download class="action-btn btn-gold" style="flex: 1 1 180px; white-space: nowrap; width: auto;">
+                                [ Ω ] POBIERZ
+                            </a>
+                        ` : ''}
+
                         ${p.linkUrl && p.linkUrl !== "#" ? `
-                            <a href="${p.linkUrl}" target="_blank" rel="noopener noreferrer" class="action-btn" style="flex: 1; text-align: center; text-decoration: none;">
-                                >> URUCHOM LIVE
+                            <a href="${p.linkUrl}" target="_blank" rel="noopener noreferrer" class="action-btn btn-pink" style="flex: 1 1 180px; white-space: nowrap;">
+                                >> ${p.linkText ? p.linkText : 'ZOBACZ'}
                             </a>
                         ` : ''}
                     </div>
                 </div>
             </article>
         `).join('');
+    }
+
+    function initAlgoModalSystem() {
+        const projectsContainer = document.getElementById('projects-container');
+        if (!projectsContainer) return;
+
+        projectsContainer.addEventListener('click', (e) => {
+            const genBtn = e.target.closest('.btn-algo-gen');
+            if (!genBtn) return;
+
+            const generatorType = genBtn.dataset.type; // Pobieramy np. "OmniAdBlocker"
+
+            switch (generatorType) {
+                case "OmniAdBlocker":
+                    showOmniAdBlockerGenerator();
+                    break;
+
+                case "FutureGenerator":
+                    // Tutaj dodasz wywołanie dla kolejnego projektu
+                    console.log("Inicjalizacja innego generatora...");
+                    break;
+
+                default:
+                    console.warn("Nieznany typ generatora:", generatorType);
+            }
+        });
+    }
+
+    async function showOmniAdBlockerGenerator() {
+        const modalContainer = document.getElementById('modal-container');
+        if (!modalContainer) return;
+
+        // Renderowanie szkieletu HTML (identyczne jak wcześniej)
+        const modalHTML = `
+            <div class="modal-backdrop active" id="algo-backdrop">
+                <div class="modal-window project-card" style="max-width: 900px; width: 95%; max-height: 90vh; overflow-y: auto;">
+                    <button class="close-modal" id="close-algo">[ X ] CLOSE_GENERATOR</button>
+                    <h2 style="color: var(--neon-cyan);">>> KONFIGURATOR OMNIBLOCKER JS</h2>
+
+                    <div class="algo-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+
+                        <div class="algo-form" id="algo-inputs">
+                            <h3 style="font-size: 0.9em; color: #888;">[ PARAMETRY WEJŚCIOWE ]</h3>
+
+                            <div class="input-group"><label><input type="checkbox" id="p-isActive" checked> Główny włącznik (isActive)</label></div>
+                            <div class="input-group"><label><input type="checkbox" id="p-debugMode" checked> Tryb Debugowania</label></div>
+                            <div class="input-group" style="margin-top: 10px;">
+                                <label>Interwał skanowania (ms):</label>
+                                <input type="number" id="p-checkIntervalMs" value="500" style="width: 80px; background: #111; color: #00f3ff; border: 1px solid #333;">
+                            </div>
+
+                            <hr style="border: 0; border-top: 1px solid #222; margin: 15px 0;">
+
+                            <div class="input-group">
+                                <label><input type="checkbox" id="p-ytEnabled" checked> Moduł YouTube</label>
+                                <div class="sub-inputs" style="padding-left: 20px; margin-top: 5px;">
+                                    Prędkość reklam:
+                                    <select id="p-ytAdSpeed" style="background: #111; color: #00f3ff; border: 1px solid #333;">
+                                        <option value="2">2x</option>
+                                        <option value="4">4x</option>
+                                        <option value="8">8x</option>
+                                        <option value="16" selected>16x</option>
+                                    </select><br>
+                                    <label><input type="checkbox" id="p-ytMuteAds" checked> Wyciszanie reklam</label><br>
+                                    <label><input type="checkbox" id="p-ytAutoResume" checked> Auto-wznowienie</label>
+                                </div>
+                            </div>
+
+                            <div class="input-group" style="margin-top: 10px;">
+                                <label><input type="checkbox" id="p-vodAntiClickjack" checked> Anti-Clickjack (VOD)</label>
+                            </div>
+
+                            <div class="input-group" style="margin-top: 10px;">
+                                <label><input type="checkbox" id="p-genericAdsEnabled" checked> Blokowanie banerów</label>
+                                <textarea id="p-customAdSelectors" placeholder="Własne selektory CSS (np. .ad-banner, #popup)..." style="width: 100%; height: 50px; margin-top:5px; background: #000; color: #00ff41; border: 1px solid #333;"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="algo-preview">
+                            <h3 style="font-size: 0.9em; color: #888;">[ WYGENEROWANY ALGORYTM ]</h3>
+                            <pre id="code-output" style="background: #050505; color: #00ff41; padding: 15px; border-radius: 4px; font-size: 0.75em; overflow: auto; height: 400px; border: 1px solid #111;">[ ŁADOWANIE PLIKU BAZOWEGO... ]</pre>
+                            <button class="action-btn btn-cyan" id="copy-algo" style="width: 100%; margin-top: 10px;">>> KOPIUJ CAŁOŚĆ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        modalContainer.insertAdjacentHTML('beforeend', modalHTML);
+        const backdrop = document.getElementById('algo-backdrop');
+        const codeOutput = document.getElementById('code-output');
+
+        // 1. POBRANIE PLIKU Z SERWERA W TLE
+        let templateCode = "";
+        try {
+            const response = await fetch('static/js/omniblocker-template.js');
+            templateCode = await response.text();
+        } catch (error) {
+            console.error("Błąd ładowania pliku algorytmu:", error);
+            codeOutput.textContent = "// Błąd krytyczny: Nie można załadować pliku bazowego algorytmu.";
+            return;
+        }
+
+        // 2. FUNKCJA GENERUJĄCA (Zamienia parametry w pobranym tekście)
+        const updateCode = () => {
+            const config = {
+                checkIntervalMs: document.getElementById('p-checkIntervalMs').value,
+                debugMode: document.getElementById('p-debugMode').checked,
+                isActive: document.getElementById('p-isActive').checked,
+                ytEnabled: document.getElementById('p-ytEnabled').checked,
+                ytAdSpeed: document.getElementById('p-ytAdSpeed').value,
+                ytMuteAds: document.getElementById('p-ytMuteAds').checked,
+                ytAutoResume: document.getElementById('p-ytAutoResume').checked,
+                vodAntiClickjack: document.getElementById('p-vodAntiClickjack').checked,
+                genericAdsEnabled: document.getElementById('p-genericAdsEnabled').checked,
+                customAdSelectors: document.getElementById('p-customAdSelectors').value
+            };
+
+            // Wykonujemy podmianę
+            const finalCode = templateCode
+                .replace('{{CHECK_INTERVAL}}', config.checkIntervalMs)
+                .replace('{{DEBUG_MODE}}', config.debugMode)
+                .replace('{{IS_ACTIVE}}', config.isActive)
+                .replace('{{YT_ENABLED}}', config.ytEnabled)
+                .replace('{{YT_AD_SPEED}}', config.ytAdSpeed)
+                .replace('{{YT_MUTE_ADS}}', config.ytMuteAds)
+                .replace('{{YT_AUTO_RESUME}}', config.ytAutoResume)
+                .replace('{{VOD_ANTI_CLICKJACK}}', config.vodAntiClickjack)
+                .replace('{{GENERIC_ADS_ENABLED}}', config.genericAdsEnabled)
+                .replace('{{CUSTOM_AD_SELECTORS}}', config.customAdSelectors);
+
+            codeOutput.textContent = finalCode;
+        };
+
+        // Podpięcie eventów nasłuchujących zmiany w inputach
+        backdrop.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('input', updateCode);
+        });
+
+        // Obsługa kopiowania do schowka
+        document.getElementById('copy-algo').onclick = () => {
+            navigator.clipboard.writeText(codeOutput.textContent);
+            const btn = document.getElementById('copy-algo');
+            btn.innerText = "[ SKOPIOWANO DO SCHOWKA ]";
+            btn.style.borderColor = "#00ff41";
+            btn.style.color = "#00ff41";
+            setTimeout(() => {
+                btn.innerText = ">> KOPIUJ CAŁOŚĆ";
+                btn.style.borderColor = "";
+                btn.style.color = "";
+            }, 2000);
+        };
+
+        document.getElementById('close-algo').onclick = () => {
+            backdrop.remove();
+            window.refreshCircuitListeners();
+        };
+
+        // Wykonanie pierwszego generowania po załadowaniu pliku
+        updateCode();
     }
 
     function renderLabs(labs) {

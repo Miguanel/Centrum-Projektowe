@@ -1,14 +1,18 @@
-/* --- ZMIENNE KOLORYSTYCZNE (Konfiguracja Systemu) --- */
+/* ==========================================================================
+   STREFA ZERO - SYSTEM CENTRALNY (GŁÓWNY ARKUSZ STYLÓW)
+   ========================================================================== */
+
+/* --- 1. ZMIENNE KOLORYSTYCZNE (Konfiguracja Systemu) --- */
 :root {
-    --bg-color: #050508;          /* Bardzo głęboki, ciemny granat/czerń */
+    --bg-color: #050508;               /* Bardzo głęboki, ciemny granat/czerń */
     --panel-bg: rgba(16, 22, 34, 0.6); /* Półprzezroczyste tło paneli */
-    --neon-cyan: #00f3ff;         /* Główny kolor akcentów */
+    --neon-cyan: #00f3ff;              /* Główny kolor akcentów */
     --neon-blue: #0275d8;
     --text-main: #e0e6ed;
     --text-muted: #8b949e;
 }
 
-/* --- RESET I BAZA --- */
+/* --- 2. RESET I BAZA --- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,7 +22,7 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
-    font-family: 'Courier New', Courier, monospace; /* Techniczny font */
+    font-family: 'Courier New', Courier, monospace;
     line-height: 1.6;
     padding: 2rem;
     background-image:
@@ -26,7 +30,7 @@ body {
         radial-gradient(circle at 85% 30%, rgba(2, 117, 216, 0.05), transparent 25%);
 }
 
-/* --- NAWIGACJA (Menu Główne) --- */
+/* --- 3. NAWIGACJA (Menu Główne) --- */
 nav {
     display: flex;
     gap: 20px;
@@ -50,70 +54,211 @@ nav a:hover {
     text-shadow: 0 0 8px var(--neon-cyan), 0 0 16px var(--neon-cyan);
 }
 
-/* --- NAGŁÓWKI SEKCJI --- */
-.section-header {
-    margin-bottom: 30px;
+@media (max-width: 700px) {
+    .nav-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 0;
+        height: auto;
+    }
+    .nav-container a {
+        width: 80%;
+        max-width: 300px;
+        text-align: center;
+        white-space: nowrap;
+        display: block;
+        margin: 0 auto;
+    }
 }
 
-.section-header h1 {
+/* --- 4. GŁÓWNE NAGŁÓWKI SEKCJI --- */
+.hero-section, .section-header {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    pointer-events: none;
+    margin-bottom: 60px;
+}
+
+.section-header { margin-bottom: 30px; }
+.section-header p { color: var(--text-muted); }
+
+.section-title {
     color: var(--neon-cyan);
+    border-bottom: 1px dashed rgba(0, 243, 255, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    margin-top: 80px;
+}
+
+h1.glitch, h2.section-title, .bio-card h3 {
+    display: inline-block;
+    position: relative;
+    pointer-events: auto;
+    background: #050510;
+    padding: 10px 20px;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+h1.glitch {
     font-size: 2em;
+    color: var(--neon-cyan);
     text-shadow: 0 0 5px rgba(0, 243, 255, 0.5);
 }
 
-.section-header p {
-    color: var(--text-muted);
+/* --- 5. SEKCJA START (O Mnie) --- */
+.bio-card {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 30px;
+    border-left: 4px solid var(--neon-cyan);
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 5;
+    background: #050510;
+}
+.bio-card h3 {
+    color: var(--neon-cyan);
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+.bio-content {
+    position: relative;
+    z-index: 6;
+}
+.bio-content p {
+    line-height: 1.6;
+    font-size: 1.05rem;
+    color: #ddd;
+}
+.highlight { color: #fff; font-weight: bold; }
+.bio-stats {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+    color: #888;
+    font-family: 'JetBrains Mono', monospace;
+}
+@media (max-width: 600px) {
+    .bio-stats { flex-direction: column; gap: 5px; }
 }
 
-/* --- SIATKA PROJEKTÓW (Grid) --- */
+/* --- 6. SIATKI I KARTY (Wspólne moduły) --- */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
 }
+.nav-hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
 
-/* --- KARTY PROJEKTÓW (Glassmorphism + Neon) --- */
 .project-card, .lab-item {
     background: var(--panel-bg);
     border: 1px solid rgba(0, 243, 255, 0.1);
     border-radius: 8px;
     padding: 20px;
-    backdrop-filter: blur(10px); /* Efekt rozmytego szkła */
+    backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 10;
 }
-
 .project-card:hover, .lab-item:hover {
     transform: translateY(-5px);
     border-color: var(--neon-cyan);
     box-shadow: 0 5px 15px rgba(0, 243, 255, 0.15);
 }
 
+/* Karta Nawigacyjna */
+.nav-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding-top: 40px;
+}
+.nav-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: rgba(0, 243, 255, 0.5);
+}
+.nav-card h3 {
+    color: var(--neon-cyan);
+    margin-bottom: 10px;
+}
+.nav-card p {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+/* Karta Kontaktowa */
+.contact-card {
+    text-align: center;
+    padding: 40px 20px;
+}
+.contact-card h3 {
+    color: var(--neon-cyan);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+.highlight-card {
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+}
+
+/* --- 7. BAZA PROJEKTÓW (Szczegóły widoku karty) --- */
 .project-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 15px;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(0, 243, 255, 0.3);
+    padding-bottom: 15px;
 }
-
 .project-header h2 {
-    font-size: 1.2em;
+    font-size: 1.25em;
     color: #fff;
+    margin: 0;
+    line-height: 1.3;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
-
-/* --- BADGE I TAGI TECHNOLOGII --- */
-.badge {
-    background: rgba(0, 243, 255, 0.1);
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tag-badge {
+    background: rgba(0, 243, 255, 0.05);
     color: var(--neon-cyan);
-    padding: 4px 8px;
-    font-size: 0.8em;
-    border-radius: 4px;
-    border: 1px solid var(--neon-cyan);
+    border: 1px solid rgba(0, 243, 255, 0.4);
+    padding: 3px 8px;
+    font-size: 0.75em;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 5px rgba(0, 243, 255, 0.1);
+    white-space: nowrap;
 }
-
 .tech-stack {
     list-style: none;
     display: flex;
@@ -121,7 +266,6 @@ nav a:hover {
     gap: 10px;
     margin: 15px 0;
 }
-
 .tech-stack li {
     font-size: 0.85em;
     color: var(--text-muted);
@@ -130,10 +274,12 @@ nav a:hover {
     border-radius: 3px;
 }
 
-/* --- PRZYCISKI AKCJI --- */
+/* --- 8. PRZYCISKI AKCJI --- */
 .action-btn {
-    margin-top: auto; /* Zawsze spycha przycisk na dół karty */
-    display: inline-block;
+    margin-top: auto;
+    display: flex;                  /* Zmieniono na flex dla idealnego centrowania w pionie i poziomie */
+    justify-content: center;
+    align-items: center;
     padding: 10px 15px;
     background: transparent;
     color: var(--neon-cyan);
@@ -143,21 +289,87 @@ nav a:hover {
     text-transform: uppercase;
     font-size: 0.9em;
     font-weight: bold;
+    font-family: inherit;           /* KLUCZOWE: Ujednolica czcionkę między <button> a <a> */
     transition: all 0.3s ease;
+    cursor: pointer;
 }
-
 .action-btn:hover {
     background: var(--neon-cyan);
     color: var(--bg-color);
     box-shadow: 0 0 10px var(--neon-cyan);
 }
 
-/* --- LABORATORIUM (Dodatkowe efekty) --- */
-.lab-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+/* Wariant Cyjanowy (Dla projektów) */
+.action-btn.btn-cyan {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
 }
+.action-btn.btn-cyan:hover {
+    background-color: rgba(0, 243, 255, 0.15);
+    color: #ffffff;
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.5), inset 0 0 10px rgba(0, 243, 255, 0.2);
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
+}
+.action-btn.btn-cyan:active {
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+}
+
+/* Wariant Złoty (Dla CV) */
+.action-btn.btn-gold {
+    border-color: #ffd700;
+    color: #ffd700;
+    width: 100%;
+}
+.action-btn.btn-gold:hover {
+    background-color: rgba(255, 215, 0, 0.15) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    text-shadow: 0 0 8px #ffd700;
+    border-color: #ffd700;
+}
+/* Wariant Zielony (Dla Generatora Algorytmów) */
+.action-btn.btn-green {
+    border-color: #00ff41;
+    color: #00ff41;
+}
+.action-btn.btn-green:hover {
+    background-color: rgba(0, 255, 65, 0.15) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
+    text-shadow: 0 0 8px #00ff41;
+    border-color: #00ff41;
+}
+
+/* Wariant Różowy / Magenta (Dla przycisków LIVE) */
+.action-btn.btn-pink {
+    border-color: #ff007f;
+    color: #ff007f;
+}
+.action-btn.btn-pink:hover {
+    background-color: rgba(255, 0, 127, 0.15) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+    text-shadow: 0 0 8px #ff007f;
+    border-color: #ff007f;
+}
+/* --- 9. ETYKIETY I STATUSY --- */
+.status-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    border: 1px solid #444;
+    padding: 3px 8px;
+    border-radius: 2px;
+    color: #666;
+    font-family: 'JetBrains Mono', monospace;
+}
+.nav-card:hover .status-badge {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+}
+.blink { animation: blink 2s infinite alternate; }
 
 .status-indicator {
     font-size: 0.9em;
@@ -166,8 +378,6 @@ nav a:hover {
     display: flex;
     align-items: center;
 }
-
-/* Animacja pulsującej kropki (Status) */
 .blinking-dot {
     width: 10px;
     height: 10px;
@@ -178,7 +388,6 @@ nav a:hover {
     box-shadow: 0 0 8px var(--neon-cyan);
     animation: blink 1.5s infinite alternate;
 }
-
 @keyframes blink {
     0% { opacity: 0.3; transform: scale(0.8); }
     100% { opacity: 1; transform: scale(1.2); }
@@ -187,156 +396,50 @@ nav a:hover {
 .future-tech {
     margin-top: 15px;
     font-size: 0.85em;
-    color: #ffd700; /* Żółty akcent dla ostrzeżeń/planów */
+    color: #ffd700;
     border-left: 3px solid #ffd700;
     padding-left: 10px;
 }
 
-/* --- Canvas dla efektów ścieżek --- */
-#circuitCanvas {
-    position: fixed; /* Będzie pływał nad/pod elementami */
-    top: 0;
-    left: 0;
-    width: 100vw;    /* Szerokość widocznego obszaru */
-    height: 100vh;   /* Wysokość widocznego obszaru */
-    pointer-events: none; /* Najważniejsze! Pozwala klikać elementy pod canvasem */
-    z-index: 99;     /* Ustaw odpowiednio, jeśli ma być nad elementami, ale pod nawigacją */
-    opacity: 0.7; /* Lekka przezroczystość */
-}
-
-// /* --- EFEKT GLITCH (WERSJA NATURALNA / PŁYNNA) --- */
-//
-// .glitch {
-//     position: relative;
-//     color: #fff;
-// }
-//
-// .glitch::before,
-// .glitch::after {
-//     content: attr(data-text);
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background: #0a0a0a; /* Kolor tła strony */
-//     opacity: 0.8; /* Lekka przezroczystość, by nie zasłaniało w 100% oryginału */
-//     clip: rect(0, 0, 0, 0); /* Domyślnie ukryte */
-// }
-//
-// /* Warstwa 1: Różowa */
-// .glitch::before {
-//     left: 2px;
-//     text-shadow: -1px 0 #ff00c1;
-//     /* Czas skrócony do 3s dla częstszego efektu */
-//     animation: glitch-smooth-1 3s infinite linear alternate-reverse;
-// }
-//
-// /* Warstwa 2: Cyjanowa */
-// .glitch::after {
-//     left: -2px;
-//     text-shadow: -1px 0 #00fff9;
-//     animation: glitch-smooth-2 3s infinite linear alternate-reverse;
-// }
-//
-// /* Animacja 1: Dwa momenty aktywności (w 40% i w 90%) */
-// @keyframes glitch-smooth-1 {
-//     0% { clip: rect(0, 0, 0, 0); }
-//     39% { clip: rect(0, 0, 0, 0); }
-//
-//     /* Małe drgnięcie w środku */
-//     40% { clip: rect(20px, 9999px, 35px, 0); }
-//     41% { clip: rect(0, 0, 0, 0); }
-//
-//     89% { clip: rect(0, 0, 0, 0); }
-//
-//     /* Główne przesunięcie na końcu - mniej klatek = mniej migania */
-//     90% { clip: rect(60px, 9999px, 80px, 0); }
-//     92% { clip: rect(10px, 9999px, 30px, 0); }
-//     93% { clip: rect(0, 0, 0, 0); }
-//     100% { clip: rect(0, 0, 0, 0); }
-// }
-//
-// /* Animacja 2: Przesunięta w czasie względem pierwszej */
-// @keyframes glitch-smooth-2 {
-//     0% { clip: rect(0, 0, 0, 0); }
-//     41% { clip: rect(0, 0, 0, 0); }
-//
-//     /* Odpowiedź na drgnięcie pierwszej warstwy */
-//     42% { clip: rect(15px, 9999px, 25px, 0); }
-//     43% { clip: rect(0, 0, 0, 0); }
-//
-//     91% { clip: rect(0, 0, 0, 0); }
-//
-//     /* Główne przesunięcie */
-//     92% { clip: rect(40px, 9999px, 60px, 0); }
-//     94% { clip: rect(80px, 9999px, 100px, 0); }
-//     95% { clip: rect(0, 0, 0, 0); }
-//     100% { clip: rect(0, 0, 0, 0); }
-// }
-
-/* --- MODAL PROJEKTOWY (SZCZEGÓŁY) --- */
-.modal-details-content {
-    color: #eee;
-    font-family: 'JetBrains Mono', monospace;
-    line-height: 1.6;
-}
-
-.modal-details-content h3 {
-    color: var(--neon-cyan, #00f3ff);
-    border-bottom: 1px solid rgba(0, 243, 255, 0.3);
-    padding-bottom: 10px;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    font-size: 1.1em;
-}
-
-.modal-details-content ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.modal-details-content ul li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: 8px;
-    color: #ccc;
-}
-
-.modal-details-content ul li::before {
-    content: ">";
-    position: absolute;
-    left: 0;
-    color: var(--neon-cyan, #00f3ff);
-}
-
-.detail-row {
+/* --- 10. LOGI SYSTEMOWE (Blog) --- */
+.system-logs {
     display: flex;
-    justify-content: space-between;
-    border-bottom: 1px dashed #333;
-    padding: 8px 0;
+    flex-direction: column;
+    gap: 20px;
 }
-
-.detail-label {
-    color: #888;
-    font-weight: bold;
+.log-entry {
+    border-left: 2px solid #333;
 }
-
-.detail-value {
+.log-entry:hover {
+    border-left-color: var(--neon-cyan);
+}
+.log-header {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+.log-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #666;
+    background: rgba(0,0,0,0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+.log-title {
+    margin: 0;
     color: #fff;
-    text-align: right;
+    font-size: 1.1rem;
 }
-
-.modal-actions {
-    margin-top: 30px;
-    text-align: center;
-    border-top: 1px solid #333;
-    padding-top: 20px;
+.log-content p {
+    margin-bottom: 10px;
+    color: #bbb;
 }
+.log-content p:last-child { margin-bottom: 0; }
 
-
-
-/* 2. Naprawa Modala - musi ignorować kliknięcia, gdy jest ukryty */
+/* --- 11. SYSTEM MODALNY --- */
 .modal-backdrop {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -346,42 +449,38 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-
-    /* KLUCZOWE LINIE: */
     opacity: 0;
-    pointer-events: none; /* Gdy ukryty, nie blokuj strony! */
+    pointer-events: none;
     transition: opacity 0.3s ease;
 }
-
 .modal-backdrop.active {
     opacity: 1;
-    pointer-events: all; /* Gdy widoczny, reaguj na myszkę */
+    pointer-events: all;
 }
-
-/* 3. Upewnij się, że karty są klikalne */
-.project-card {
+.modal-window {
+    background: #0a0a0a;
+    border: 1px solid var(--neon-cyan);
+    padding: 30px;
+    max-width: 500px; /* Standardowy dla CV, rozszerzany inline dla algorytmów */
+    width: 90%;
     position: relative;
-    z-index: 10; /* Wyżej niż tło */
-}
-
-/* Stylizacja okna modala - umożliwienie przewijania */
-.modal-window.project-card {
-    max-height: 90vh; /* Maksymalnie 90% wysokości ekranu */
-    overflow-y: auto; /* Włącza przewijanie pionowe gdy treść jest długa */
-    position: relative;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--neon-cyan) #000;
 }
+.modal-backdrop.active .modal-window {
+    transform: scale(1);
+}
 
-/* Stylizacja przycisku zamknięcia */
 .close-modal {
-    position: sticky; /* Przyklejony do góry podczas przewijania */
+    position: sticky;
     top: 0;
-
-    /* KLUCZOWE ZMIANY TUTAJ: */
-    align-self: flex-end; /* Zastępuje 'float: right' - przycisk ma teraz własną linię */
-    background: var(--bg-color); /* Pełne tło, by tekst pod spodem nie prześwitywał przy przewijaniu */
-
+    align-self: flex-end;
+    background: var(--bg-color);
     border: 1px solid var(--neon-cyan);
     color: var(--neon-cyan);
     font-family: 'JetBrains Mono', monospace;
@@ -391,56 +490,112 @@ nav a:hover {
     box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
     transition: all 0.3s ease;
     z-index: 100;
-    margin-bottom: 15px; /* Odpycha resztę treści na bezpieczną odległość */
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto; /* Dopycha przycisk do prawej krawędzi */
 }
-
 .close-modal:hover {
     background: var(--neon-cyan);
     color: #000;
     box-shadow: 0 0 15px var(--neon-cyan);
 }
 
-/* Styl dla urządzeń mobilnych */
-@media (max-width: 700px) {
-    .nav-container {
-        display: flex;
-        flex-direction: column; /* To ustawia elementy pionowo */
-        align-items: center;    /* Wyśrodkowuje przyciski */
-        gap: 10px;              /* Dodaje odstęp między przyciskami */
-        padding: 15px 0;
-        height: auto;           /* Pozwala kontenerowi rosnąć w dół */
-    }
+/* Wnętrze Modala Projektu */
+.modal-details-content {
+    color: #eee;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.6;
+}
+.modal-details-content h3 {
+    color: var(--neon-cyan);
+    border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+    padding-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+.modal-details-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+.modal-details-content ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    color: #ccc;
+}
+.modal-details-content ul li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--neon-cyan);
+}
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #333;
+    padding: 8px 0;
+}
+.detail-label {
+    color: #888;
+    font-weight: bold;
+}
+.detail-value {
+    color: #fff;
+    text-align: right;
+}
+.modal-actions {
+    margin-top: 30px;
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
 
-    .nav-container a {
-        width: 80%;             /* Przyciski zajmują 80% szerokości ekranu */
-        max-width: 300px;       /* Ale nie więcej niż 300px (dla tabletów) */
-        text-align: center;     /* Tekst wyśrodkowany w przycisku */
-        white-space: nowrap;    /* KLUCZOWE: Zapobiega łamaniu tekstu wewnątrz nawiasów [ ] */
-        display: block;
-        margin: 0 auto;         /* Dodatkowe centrowanie */
-    }
+/* Lista wyboru CV */
+.cv-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+.cv-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.cv-btn:hover {
+    border-color: var(--neon-cyan);
+    background: rgba(0, 243, 255, 0.1);
+    padding-left: 25px;
+}
+
+/* --- 12. CANVAS & OVERLAY (Grafika) --- */
+canvas#flowerCanvas, canvas#circuitCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+
+canvas#circuitCanvas {
+    z-index: -2;
+    opacity: 0.7;
 }
 
 canvas#flowerCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2; /* Głębiej niż circuitCanvas, lub na tym samym poziomie */
-    pointer-events: none;
-}
-canvas#circuitCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    pointer-events: none;
+    z-index: -3;
 }
 
-/* --- FULLSCREEN IMAGE VIEWER --- */
 .image-viewer-overlay {
     position: fixed;
     top: 0;
@@ -457,38 +612,42 @@ canvas#circuitCanvas {
     pointer-events: none;
     transition: opacity 0.3s ease;
 }
-
 .image-viewer-overlay.active {
     opacity: 1;
     pointer-events: all;
 }
-
 .image-viewer-overlay img {
     max-width: 95%;
     max-height: 95%;
     object-fit: contain;
     cursor: grab;
-    transition: transform 0.1s ease-out; /* Płynność przybliżania */
+    transition: transform 0.1s ease-out;
     will-change: transform;
 }
-
 .image-viewer-overlay img:active {
     cursor: grabbing;
 }
-
 .viewer-close {
     position: absolute;
     top: 20px;
     right: 30px;
-    color: var(--neon-cyan, #00f3ff);
+    color: var(--neon-cyan);
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
     z-index: 10000;
-    text-shadow: 0 0 10px var(--neon-cyan, #00f3ff);
+    text-shadow: 0 0 10px var(--neon-cyan);
     transition: transform 0.2s;
 }
-
 .viewer-close:hover {
     transform: scale(1.2);
 }
+
+/* Opcjonalny Glitch - naprawiona składnia CSS */
+/* .glitch { position: relative; color: #fff; }
+.glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0a; opacity: 0.8; clip: rect(0, 0, 0, 0); }
+.glitch::before { left: 2px; text-shadow: -1px 0 #ff00c1; animation: glitch-smooth-1 3s infinite linear alternate-reverse; }
+.glitch::after { left: -2px; text-shadow: -1px 0 #00fff9; animation: glitch-smooth-2 3s infinite linear alternate-reverse; }
+@keyframes glitch-smooth-1 { 0%, 39%, 41%, 89%, 93%, 100% { clip: rect(0, 0, 0, 0); } 40% { clip: rect(20px, 9999px, 35px, 0); } 90% { clip: rect(60px, 9999px, 80px, 0); } 92% { clip: rect(10px, 9999px, 30px, 0); } }
+@keyframes glitch-smooth-2 { 0%, 41%, 43%, 91%, 95%, 100% { clip: rect(0, 0, 0, 0); } 42% { clip: rect(15px, 9999px, 25px, 0); } 92% { clip: rect(40px, 9999px, 60px, 0); } 94% { clip: rect(80px, 9999px, 100px, 0); } }
+*/

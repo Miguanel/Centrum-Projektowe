@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
             flowerCard.addEventListener('mouseenter', startGrowth);
             flowerCard.addEventListener('mouseleave', stopGrowth);
 
-            // --- NOWOŚĆ: Obsługa dotyku podczas przewijania ---
+            // --- Obsługa dotyku podczas przewijania ---
             flowerCard.addEventListener('touchstart', (e) => {
                 startGrowth(e);
             }, { passive: true }); // passive: true pozwala na płynne przewijanie strony
