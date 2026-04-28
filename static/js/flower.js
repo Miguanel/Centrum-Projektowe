@@ -244,7 +244,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.stopFlowerAnimation = stopGrowth;
 
     const finderInterval = setInterval(() => {
-        const flowerCard = Array.from(document.querySelectorAll('.project-card')).find(card => card.innerText.includes('Kwiatownik'));
+        const headers = document.querySelectorAll('.project-card h2');
+        let flowerCard = null;
+
+        headers.forEach(h => {
+            // Szukamy słowa 'Kwiatownik' tylko w głównych tytułach projektów
+            if (h.innerText.includes('Kwiatownik')) {
+                flowerCard = h.closest('.project-card');
+            }
+        });
+
         if (flowerCard) {
             clearInterval(finderInterval);
             flowerCard.dataset.organic = "true";
@@ -253,10 +262,11 @@ document.addEventListener('DOMContentLoaded', () => {
             flowerCard.addEventListener('mouseenter', startGrowth);
             flowerCard.addEventListener('mouseleave', stopGrowth);
 
-            // --- Obsługa dotyku podczas przewijania ---
+            // Obsługa dotyku podczas przewijania
             flowerCard.addEventListener('touchstart', (e) => {
+                activeCard = null;
                 startGrowth(e);
-            }, { passive: true }); // passive: true pozwala na płynne przewijanie strony
+            }, { passive: true });
         }
     }, 500);
 });

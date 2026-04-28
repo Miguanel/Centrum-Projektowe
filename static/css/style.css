@@ -99,7 +99,7 @@ h1.glitch, h2.section-title, .bio-card h3 {
     position: relative;
     pointer-events: auto;
     background: #050510;
-    padding: 10px 20px;
+    padding: 2px 10px;
     border-radius: 4px;
     z-index: 10;
 }
@@ -642,7 +642,75 @@ canvas#flowerCanvas {
 .viewer-close:hover {
     transform: scale(1.2);
 }
+/* --- 13. GENERATOR ALGORYTMÓW (Złoty Podział i Responsywność) --- */
+.algo-grid {
+    display: grid;
+    /* Złoty podział: Lewa kolumna ~38.2%, Prawa kolumna ~61.8% */
+    grid-template-columns: 1fr 1.618fr;
+    gap: 25px;
+    margin-top: 20px;
+}
 
+.algo-form, .algo-preview {
+    /* KLUCZOWE: Zapobiega rozpychaniu siatki przez długi tekst w bloku <pre> */
+    min-width: 0;
+}
+
+.algo-form {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+.algo-preview {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Wymuszenie 1 kolumny na urządzeniach mobilnych i tabletach */
+@media (max-width: 850px) {
+    .algo-grid {
+        grid-template-columns: 1fr;
+    }
+    .algo-preview pre {
+        height: 300px !important; /* Mniejszy blok kodu na telefonie */
+    }
+}
+
+/* --- RESPONDYWNOŚĆ MODALA (TELEFONY I TABLETY) --- */
+@media (max-width: 850px) {
+    /* 1. Złamanie siatki do jednej kolumny */
+    .algo-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    /* 2. Zmniejszenie marginesów wewnętrznych modala, by zyskać miejsce */
+    .modal-window {
+        padding: 15px !important;
+    }
+
+    /* 3. Pomniejszenie tytułu, aby nie wypychał okna */
+    .modal-window h2 {
+        font-size: 1.1em !important;
+        word-wrap: break-word;
+    }
+
+    /* 4. Mniejszy przycisk zamykania */
+    .close-modal {
+        font-size: 0.9em !important;
+        padding: 5px 8px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* 5. Zmniejszenie wysokości bloku z kodem na telefonie */
+    .algo-preview pre {
+        min-height: 250px !important;
+        height: 250px !important;
+    }
+}
 /* Opcjonalny Glitch - naprawiona składnia CSS */
 /* .glitch { position: relative; color: #fff; }
 .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0a; opacity: 0.8; clip: rect(0, 0, 0, 0); }

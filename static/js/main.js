@@ -394,7 +394,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const textBlocks = document.querySelectorAll('.section-header h1, .section-header p');
         textBlocks.forEach(block => {
             const words = block.textContent.trim().split(/\s+/);
-            block.innerHTML = words.map(word => `<span class="word-obstacle" style="display:inline-block; margin: 2px 8px;">${word}</span>`).join(' ');
+            // ZMIENIONO: margin: 2px 8px; -> margin: 0 4px;
+            block.innerHTML = words.map(word => `<span class="word-obstacle" style="display:inline-block; margin: 0 4px;">${word}</span>`).join(' ');
         });
 
         const canvas = document.getElementById('circuitCanvas');
@@ -484,8 +485,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let clearance = 4; // Standardowy odstęp
 
-                    // Dla nagłówków dajemy średni margines (nie za duży, nie za mały)
-                    if (isHeader) clearance = 10;
+                    // ZMIENIONO: Zmniejszamy strefę kolizji z 10 na 2
+                    if (isHeader) clearance = 2;
 
                     return {
                         left: r.left + scrollX - clearance,
